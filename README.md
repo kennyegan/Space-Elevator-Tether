@@ -40,7 +40,7 @@ Instead of an unserviceable monolithic ribbon, the modular approach enables:
 ## ⚙️ Getting Started
 1. Clone this repository:
    ```bash
-   git clone https://github.com/<your-username>/modular-cnt-tether.git
+   git clone https://github.com/kennyegan/modular-cnt-tether.git
    cd modular-cnt-tether
    ```
 

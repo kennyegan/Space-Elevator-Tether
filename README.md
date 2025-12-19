@@ -26,12 +26,6 @@ Instead of an unserviceable monolithic ribbon, the modular approach enables:
 
 ---
 
-##  Repository Structure
-/docs → Paper drafts, extended abstract, references
-/models → Analytical derivations and equations (orbital mechanics, tapering)
-/simulations → Finite-element and lumped-parameter models (Python/Matlab)
-/results → Plots, stress profiles, repair logistics data
-
 
 
 

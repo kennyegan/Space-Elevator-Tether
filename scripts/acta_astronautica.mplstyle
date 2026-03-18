@@ -1,0 +1,49 @@
+# Matplotlib style for Acta Astronautica (Elsevier) publication figures
+# Usage: plt.style.use('scripts/acta_astronautica.mplstyle')
+
+# Figure size — Elsevier single-column: 90 mm (3.54 in), double-column: 190 mm (7.48 in)
+figure.figsize: 7.48, 4.62
+figure.dpi: 300
+
+# Font — Elsevier prefers Times/serif
+font.family: serif
+font.serif: Times New Roman, Times, DejaVu Serif
+font.size: 9
+mathtext.fontset: stix
+
+# Axes
+axes.linewidth: 0.6
+axes.labelsize: 10
+axes.titlesize: 10
+axes.spines.top: False
+axes.spines.right: False
+# Wong (2011) colorblind-safe palette
+axes.prop_cycle: cycler('color', ['000000', 'E69F00', '56B4E9', '009E73', 'F0E442', '0072B2', 'D55E00', 'CC79A7'])
+
+# Ticks
+xtick.labelsize: 8
+ytick.labelsize: 8
+xtick.major.width: 0.6
+ytick.major.width: 0.6
+xtick.minor.width: 0.4
+ytick.minor.width: 0.4
+xtick.direction: in
+ytick.direction: in
+
+# Lines
+lines.linewidth: 1.2
+lines.markersize: 4
+
+# Legend
+legend.fontsize: 8
+legend.frameon: False
+
+# Grid
+grid.linewidth: 0.4
+grid.alpha: 0.3
+
+# Saving
+savefig.dpi: 300
+savefig.bbox: tight
+savefig.pad_inches: 0.02
+savefig.format: pdf

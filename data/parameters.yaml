@@ -1,0 +1,65 @@
+# Master parameter file for modular CNT space-elevator tether simulations
+# LOCKED — all simulations load from this file. No hardcoded constants in scripts.
+# Any parameter change triggers a full re-run.
+
+physical:
+  GM_earth: 3.986004418e14   # m³/s²
+  R_earth: 6.3781e6          # m
+  omega_earth: 7.2921159e-5  # rad/s
+  k_B: 1.380649e-23          # J/K
+
+orbital:
+  r_GEO: 4.21642e7           # m
+  h_GEO: 3.5786e7            # m
+
+tether:
+  L_total: 1.0e8             # m (100,000 km)
+  w_max: 1.2                 # m
+
+material:
+  rho: 1300.0                # kg/m³
+  sigma_u_baseline: 50.0e9   # Pa
+  E_yarn: 280.0e9            # Pa
+  k_parallel: 500.0          # W/(m·K)
+  CTE: 4.0e-6                # 1/K
+
+design:
+  SF: 2.0
+  chi_rad: 0.85
+  eta_j_baseline: 0.95
+  sigma_allow: 25.0e9        # Pa (= sigma_u / SF)
+  sigma_allow_net: 20.2e9    # Pa (= sigma_u * chi_rad * eta_j / SF)
+
+segments:
+  m_star: 18000.0            # kg (target per-segment mass)
+  m_launch_cap: 30000.0      # kg (hard limit)
+  N_baseline: 18
+  m_sleeve: 35.0             # kg per joint
+
+joints:
+  ell_sleeve: 3.0            # m
+  lambda_0: 1.2e-8           # 1/h (hazard rate)
+  Q_activation: 1.76e-19     # J (1.1 eV)
+
+climber:
+  m_climber: 20000.0         # kg
+  v_climber: 150.0           # m/s
+  separation_min: 1.2e7      # m (12 Mm)
+
+monte_carlo:
+  n_trajectories: 100000
+  t_mission: 87600.0         # h (10 years)
+  N_sweep: [12, 15, 18, 21, 24]
+  eta_j_sweep: [0.88, 0.90, 0.93, 0.95, 0.97]
+  inspection_cadence_sweep: [1, 2, 5, 10]
+  p_detection: 0.995
+  t_joint_replace: 1.4       # h
+
+sensitivity:
+  sigma_u_sweep: [30.0e9, 35.0e9, 40.0e9, 50.0e9, 60.0e9, 70.0e9]
+
+cost:
+  discount_rate_sweep: [0.05, 0.07, 0.10]
+  launch_cost_sweep: [500, 1000, 1500, 2000]  # $/kg to GTO
+  payload_revenue_sweep: [200, 300, 500]       # $/kg to GEO
+  system_lifetime: 30        # years

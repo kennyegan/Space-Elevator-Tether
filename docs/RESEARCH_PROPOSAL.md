@@ -2,7 +2,6 @@
 
 **Target Journal:** Acta Astronautica (Elsevier) — Q1 Aerospace Engineering, IF 3.4, h-index 114  
 **Lead Author:** Kenneth Egan, Wentworth Institute of Technology  
-**Advisor:** M. Ergezer  
 **Submission Portal:** https://www.editorialmanager.com/aastronautica/default.aspx  
 **Author Guidelines:** https://www.sciencedirect.com/journal/acta-astronautica/publish/guide-for-authors  
 

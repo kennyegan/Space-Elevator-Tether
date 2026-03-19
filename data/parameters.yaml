@@ -37,22 +37,33 @@ segments:
   m_sleeve: 35.0             # kg per joint
 
 joints:
-  ell_sleeve: 3.0            # m
-  lambda_0: 1.2e-8           # 1/h (hazard rate)
-  Q_activation: 1.76e-19     # J (1.1 eV)
+  ell_sleeve: 3.0            # m (sleeve overlap length)
+  ts_sleeve: 0.004           # m (sleeve thickness, 4 mm densified CNT tape)
+  tau_shear_fraction: 0.42   # τ_allow = 0.42 × σ_allow (from Wright et al. 2023)
+  # Hazard rate model — see §4.2.3 of draft
+  # λ̄ = 1.2e-8/h is mission-averaged over thermal profile (coupon-scale)
+  # Full-scale: Weibull volume scaling from 50 mm coupons to 3.0 m × 1.2 m sleeves
+  lambda_0_bar: 1.2e-8       # 1/h coupon-scale mission-averaged (Wright 2023)
+  lambda_0: 5.2e-8           # 1/h full-scale = lambda_0_bar × volume_scale_factor
+  Q_activation: 1.76e-19     # J (1.1 eV activation energy for void growth)
+  weibull_modulus: 6          # Weibull shape parameter for CNT composites
+  volume_ratio: 6000          # V_sleeve / V_coupon = (3.0×1.2×0.004) / (0.05×0.012×0.004)
+  volume_scale_factor: 4.3   # = volume_ratio^(1/weibull_modulus) = 6000^(1/6)
 
 climber:
   m_climber: 20000.0         # kg
   v_climber: 150.0           # m/s
   separation_min: 1.2e7      # m (12 Mm)
+  m_counterweight: 600000.0  # kg (Edwards & Westling 2003 estimate)
 
 monte_carlo:
   n_trajectories: 100000
   t_mission: 87600.0         # h (10 years)
-  N_sweep: [12, 15, 18, 21, 24]
-  eta_j_sweep: [0.88, 0.90, 0.93, 0.95, 0.97]
+  N_sweep: [12, 15, 18, 21, 24, 50, 100, 200, 500]
+  eta_j_sweep: [0.70, 0.75, 0.80, 0.85, 0.88, 0.90, 0.93, 0.95, 0.97]
   inspection_cadence_sweep: [1, 2, 5, 10]
-  p_detection: 0.995
+  p_detection_sweep: [0.50, 0.70, 0.80, 0.90, 0.95, 0.99, 0.995]
+  p_detection_baseline: 0.995
   t_joint_replace: 1.4       # h
 
 sensitivity:
@@ -63,3 +74,4 @@ cost:
   launch_cost_sweep: [500, 1000, 1500, 2000]  # $/kg to GTO
   payload_revenue_sweep: [200, 300, 500]       # $/kg to GEO
   system_lifetime: 30        # years
+  construction_cadence: 12   # launches per year during construction

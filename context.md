@@ -25,9 +25,14 @@ First coupled system-level feasibility assessment of a **modular** CNT space-ele
 
 **All simulations load from `data/parameters.yaml`.** No hardcoded physical constants in scripts. Any parameter change triggers a full re-run.
 
-## Known Blocker
+## Resolved: Taper Ratio Discrepancy
 
-**Taper ratio discrepancy:** Draft claims τ ≈ 1.6 at σ_allow = 25 GPa, but numerical integration gives τ ≈ 12.4. Must resolve before any other simulation work — likely the draft used σ_u (50 GPa) instead of σ_allow (25 GPa) for the taper calculation.
+**RESOLVED.** The discrepancy (τ ≈ 1.6 vs. 12.4) was caused by Edwards & Westling implicitly tapering at σ_u rather than σ_allow. Paper now presents both as "optimistic" (σ_u → τ = 3.52, N = 83) and "conservative" (σ_allow → τ = 12.40, N = 505) design envelopes.
+
+## Remaining Simulations
+
+- **modal_analysis.py** — not yet run on cluster; needed for joint compliance frequency shift values
+- **npv_model.py** — not yet run on cluster; needed for lifecycle cost/NPV crossover values
 
 ## Repository Layout
 

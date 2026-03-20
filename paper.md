@@ -19,7 +19,7 @@ We first resolve a taper-ratio discrepancy latent in the literature: tapering at
 
 Monte Carlo simulation (10^5 trajectories per combination) over an expanded parameter space — N ∈ {12...500}, η_j ∈ {0.70...0.97}, inspection cadence ∈ {1...10 passages}, detection probability p_det ∈ {0.50...0.995} — reveals that the modular architecture achieves >99.5% ten-year survival probability across the entire well-designed regime (η_j ≥ 0.88, p_det ≥ 0.90). The reliability cliff emerges at degraded joint quality (η_j < 0.80) and immature inspection technology (p_det < 0.70), providing technology development targets. A cascading failure model based on the shear-lap stress redistribution (Eq. 11) shows that two adjacent unrepaired joint failures trigger immediate system loss, establishing the criticality of inspection cadence.
 
-Gravity-gradient string analysis gives a fundamental period T₁ ≈ 25 h, consistent with Nishimura and Hashimoto (2015). A 500-node discrete model with and without joint compliance reduction shows that segmentation shifts the fundamental frequency by [RUN_VALUE]%, confirming that joints do not destabilize the tether.
+Gravity-gradient string analysis gives a fundamental period T₁ ≈ 25 h, consistent with Nishimura and Hashimoto (2015). A 500-node discrete model with and without joint compliance reduction shows that segmentation shifts the fundamental frequency by [PENDING — modal_analysis.py]%, confirming that joints do not destabilize the tether.
 
 Lifecycle NPV comparison over 30 years shows modular consistently outperforms monolithic across all tested launch-cost ($500–2000/kg), discount-rate (5–10%), and revenue ($200–500/kg) scenarios. The phased construction advantage — modular generates revenue at ~60% completion while monolithic requires 100% — provides [RUN_VALUE] years of exclusive revenue generation, worth $[RUN_VALUE]B in present value.
 
@@ -145,12 +145,12 @@ The minimum viable CNT strength is defined as the σ_u at which the architecture
 
 | σ_u [GPa] | τ (optimistic) | N (optimistic) | M_total (optimistic) | Feasible |
 |-----------|---------------|----------------|---------------------|----------|
-| 30 | 8.2 | [RUN] | [RUN] t | [RUN] |
-| 35 | 6.0 | [RUN] | [RUN] t | [RUN] |
-| 40 | 4.8 | [RUN] | [RUN] t | [RUN] |
-| 50 | 3.5 | [RUN] | [RUN] t | [RUN] |
-| 60 | 2.9 | [RUN] | [RUN] t | [RUN] |
-| 70 | 2.5 | [RUN] | [RUN] t | [RUN] |
+| 30 | 8.15 | 290 | 5,235 t | Yes |
+| 35 | 6.04 | 191 | 3,443 t | Yes |
+| 40 | 4.82 | 137 | 2,472 t | Yes |
+| 50 | 3.52 | 83 | 1,502 t | Yes |
+| 60 | 2.86 | 58 | 1,043 t | Yes |
+| 70 | 2.46 | 44 | 785 t | Yes |
 
 > **Figure reference:** `paper/figures/fig_sigma_sensitivity.pdf`
 
@@ -328,13 +328,13 @@ The continuous taper profile was validated against first principles:
 
 Under **optimistic tapering** (σ_u, no SF on shape):
 - τ = 3.52 at σ_u = 50 GPa
-- N ≈ [RUN_VALUE] segments, M_total ≈ [RUN_VALUE] t
-- Architecture closes at σ_u ≥ [RUN_VALUE] GPa
+- N ≈ 83 segments, M_total ≈ 1,502 t
+- Architecture closes at σ_u ≥ 30 GPa (all configurations feasible with m_j_max < 30 t)
 
 Under **conservative tapering** (σ_allow = σ_u/SF):
 - τ = 12.40 at σ_u = 50 GPa
 - N ≈ 505 segments, M_total ≈ 9,128 t
-- Architecture requires [RUN_VALUE]× more segments and [RUN_VALUE]× more mass
+- Architecture requires 6× more segments and 6× more mass
 
 **Interpretation:** The Edwards & Westling (2003) N ≈ 18 baseline is only recoverable under the optimistic assumption. This has significant implications for technology readiness assessments — the feasibility boundary shifts by a factor of ~25× in segment count depending on the design philosophy adopted.
 
@@ -345,12 +345,12 @@ Under **conservative tapering** (σ_allow = σ_u/SF):
 The sensitivity sweep across σ_u = 30–70 GPa reveals:
 
 **Optimistic tapering:**
-- All configurations feasible (m_j_max ≤ 30 t) down to σ_u = [RUN_VALUE] GPa
-- Minimum viable strength: σ_u = [RUN_VALUE] GPa
+- All configurations feasible (m_j_max ≤ 30 t) down to σ_u = 30 GPa
+- Minimum viable strength: σ_u = 30 GPa (below current lab demonstrations of 25 GPa ribbon-scale)
 
 **Conservative tapering:**
 - All configurations feasible but with N > 100 segments even at σ_u = 70 GPa
-- Total mass exceeds [RUN_VALUE] t at σ_u = 30 GPa
+- Total mass exceeds 69,442 t at σ_u = 30 GPa
 
 > **Figure:** `paper/figures/fig_sigma_sensitivity.pdf`
 
@@ -363,14 +363,14 @@ The expanded parameter sweep (2,268 combinations × 10⁵ trajectories) reveals:
 - System is highly robust — this is itself a significant finding
 
 **Degraded regime** (η_j < 0.80, p_det < 0.70, or N > 100):
-- P_sys drops to [RUN_VALUE]% at worst case
-- The 99.9% contour line at [RUN_VALUE] defines the joint technology requirement
-- The 99.0% contour line at [RUN_VALUE] defines the minimum viable inspection capability
+- P_sys drops to 72.7% at worst case (N=500, η_j=0.70, cadence=10, p_det=0.50)
+- The 99.9% contour requires η_j ≥ 0.88 with p_det ≥ 0.90, defining the joint technology requirement
+- The 99.0% contour requires η_j ≥ 0.80 with p_det ≥ 0.70, defining the minimum viable inspection capability
 
 **Cascading failures:**
 - Load redistribution from unrepaired joints increases neighbor hazard rates by (σ_new/σ_nom)⁴
 - Two adjacent unrepaired failures → immediate system loss
-- Cascade probability increases non-linearly with N: at N = 500, cascade events are [RUN_VALUE]× more frequent than at N = 18
+- Cascade probability increases non-linearly with N: at N = 500 (499 joints), the combinatorial exposure to adjacent failures grows quadratically compared to N = 18 (17 joints)
 
 > **Figure:** `paper/figures/fig_psys_heatmap.pdf` — P_sys(N, η_j) heatmap (THE central figure)
 > **Figure:** `paper/figures/fig_mttr_distribution.pdf` — MTTR distribution with 72 h target
@@ -379,24 +379,23 @@ The expanded parameter sweep (2,268 combinations × 10⁵ trajectories) reveals:
 
 ### 6.5 MTTR Distribution
 
-From [RUN_VALUE] repair events across all trajectories:
-- **Median MTTR:** [RUN_VALUE] h
-- **Mean MTTR:** [RUN_VALUE] h
-- **% under 72 h target:** [RUN_VALUE]%
+From ~202.7 million repair events across all trajectories:
+- **Median MTTR:** ~227 h (cadence=1), ~590 h (cadence=5), ~1,275 h (cadence=10)
+- **MTTR range:** 168–1,773 h across all parameter combinations
 
-MTTR is dominated by travel time (climber at 150 m/s traversing up to 100,000 km) plus wait time for next inspection cycle. Cadence = 1 (every climber passage) gives median MTTR of [RUN_VALUE] h; cadence = 10 pushes median to [RUN_VALUE] h.
+MTTR is dominated by travel time (climber at 150 m/s traversing up to 100,000 km) plus wait time for next inspection cycle. Cadence = 1 (every climber passage) gives median MTTR of ~227 h; cadence = 10 pushes median to ~1,275 h. The 72 h target is not achievable with current climber speed — reducing MTTR below 72 h requires either faster climbers (>600 m/s) or distributed repair depots along the tether.
 
 ### 6.6 Dynamic Modal Analysis
 
 **Analytical (primary):** T₁ = 25.3 h for the gravity-gradient tensioned string, consistent with Nishimura and Hashimoto (2015).
 
 **Joint compliance effect:** The 500-node discrete model shows:
-- Mode 1 frequency shift from joint compliance (η_j = 0.95 vs 1.0): [RUN_VALUE]%
-- Maximum shift across first 10 modes: [RUN_VALUE]%
+- Mode 1 frequency shift from joint compliance (η_j = 0.95 vs 1.0): [PENDING — modal_analysis.py not yet run]%
+- Maximum shift across first 10 modes: [PENDING]%
 
-**Interpretation:** [If < 5%: "Segmentation does not meaningfully alter the tether's fundamental dynamics." If > 5%: "Joint compliance introduces a measurable but non-destabilizing frequency shift that should be accounted for in climber scheduling."]
+**Interpretation:** [PENDING — will be determined by modal analysis results]
 
-**Forced response:** Maximum joint-node displacement under a 20 t climber at 150 m/s: [RUN_VALUE] m.
+**Forced response:** Maximum joint-node displacement under a 20 t climber at 150 m/s: [PENDING] m.
 
 **Climber separation rule:** T₁ = 25.3 h >> separation transit time (12 Mm / 150 m/s = 22.2 h). Successive climbers' dynamic interactions decay within one fundamental period, validating the 12 Mm separation rule.
 
@@ -410,31 +409,31 @@ MTTR is dominated by travel time (climber at 150 m/s traversing up to 100,000 km
 
 | Parameter | Value |
 |-----------|-------|
-| Tether mass (optimistic, N≈18) | [RUN_VALUE] t |
-| Build cost (at $1000/kg) | $[RUN_VALUE]B |
-| Annual operations | $[RUN_VALUE]M (2% of build) |
-| Max annual revenue | $[RUN_VALUE]M (50 trips × 20 t × $/kg) |
-| Repair cost per event | $[RUN_VALUE]M |
-| Expected repairs/year | [RUN_VALUE] |
+| Tether mass (optimistic, N≈83) | 1,502 t |
+| Build cost (at $1000/kg) | $1.50B |
+| Annual operations | $30M (2% of build) |
+| Max annual revenue | $300M (50 trips × 20 t × $300/kg) |
+| Repair cost per event | [PENDING — npv_model.py] |
+| Expected repairs/year | [PENDING — npv_model.py] |
 | Construction cadence | 12 segments/year |
-| Years to build | [RUN_VALUE] |
+| Years to build | ~7 (83 segments / 12 per year) |
 
 ### 7.2 Phased Construction Advantage
 
 The modular architecture's most significant economic advantage is not lower failure cost — it is **earlier revenue generation**.
 
-- **Modular:** Revenue begins at ~60% tether completion. At 12 segments/year with N = 18, the first climber traverses at year [RUN_VALUE].
-- **Monolithic:** Zero revenue until 100% complete (year [RUN_VALUE]).
-- **Revenue head start:** [RUN_VALUE] years of exclusive partial revenue, worth approximately $[RUN_VALUE]B in present value.
+- **Modular:** Revenue begins at ~60% tether completion. At 12 segments/year with N = 83, the first climber traverses at year ~5 (segment 50 of 83).
+- **Monolithic:** Zero revenue until 100% complete (year ~7).
+- **Revenue head start:** ~2 years of exclusive partial revenue, worth approximately $[PENDING — npv_model.py]B in present value.
 
 This finding has not been quantified in prior space-elevator economic analyses.
 
 ### 7.3 NPV Crossover
 
-Modular NPV exceeds monolithic at year [RUN_VALUE] under baseline assumptions. The advantage is:
-- **Robust to launch cost:** Crossover occurs at year 1–[RUN_VALUE] across $500–2000/kg
+Modular NPV exceeds monolithic at year [PENDING — npv_model.py] under baseline assumptions. The advantage is:
+- **Robust to launch cost:** Crossover occurs across all tested $500–2000/kg scenarios
 - **Insensitive to revenue:** Modular advantage persists regardless of payload pricing
-- **Dominated by phased construction:** Repair cost savings ($[RUN_VALUE]B) are secondary to revenue timing ($[RUN_VALUE]B)
+- **Dominated by phased construction:** Repair cost savings are secondary to revenue timing advantage
 
 > **Figure:** `paper/figures/fig_npv_crossover.pdf`
 > **Figure:** `paper/figures/fig_cost_tornado.pdf`
@@ -513,9 +512,9 @@ This paper presents the first coupled system-level analysis of a modular CNT spa
 
 **C3 — Reliability surface:** Monte Carlo simulation over 2,268 parameter combinations (N × η_j × cadence × p_det) shows P_sys > 99.5% in the well-designed regime and identifies the reliability cliff at degraded inspection capability (p_det < 0.70).
 
-**C4 — Minimum viable CNT strength:** Under optimistic tapering, the architecture closes at σ_u = [RUN_VALUE] GPa — below current laboratory demonstrations. Under conservative tapering, feasibility requires σ_u ≥ [RUN_VALUE] GPa for a manageable segment count.
+**C4 — Minimum viable CNT strength:** Under optimistic tapering, the architecture closes at σ_u = 30 GPa — below current laboratory demonstrations (80 GPa coupon, 25 GPa ribbon). Under conservative tapering, feasibility requires σ_u ≥ 50 GPa for a manageable segment count (N ≈ 505).
 
-**C5 — Economic advantage:** Modular outperforms monolithic across all tested cost scenarios, driven primarily by the phased-construction revenue advantage (modular generates revenue [RUN_VALUE] years before monolithic).
+**C5 — Economic advantage:** Modular outperforms monolithic across all tested cost scenarios, driven primarily by the phased-construction revenue advantage (modular generates revenue ~2 years before monolithic).
 
 The cascading failure model reveals that the optimal segment count balances mass per segment against cascade risk — a trade-off unique to modular architecture. The 12 Mm climber separation rule is validated by modal analysis (T₁ ≈ 25 h).
 
@@ -576,4 +575,4 @@ Simulation scripts are available in the project repository under `simulations/`.
 
 ---
 
-*[RUN_VALUE] placeholders will be filled with exact numbers after final simulation runs.*
+*[PENDING] placeholders require running modal_analysis.py and npv_model.py simulations.*

@@ -18,11 +18,12 @@ Instead of an unserviceable monolithic ribbon, the modular approach enables:
 
 ---
 
-##  Research Contributions
-- Closed-form tension and vibration envelopes for segmented CNT tethers  
-- Finite-element and lumped-parameter simulations of joint failure modes  
-- Deployment and logistics models for staged assembly from GEO  
-- Repairability analysis showing mean-time-to-repair < 72h for a 50 km module  
+## Research Contributions
+- First coupled system-level feasibility assessment of a modular CNT space-elevator tether
+- Monte Carlo reliability surface over 2,268 parameter combinations (226.8M trajectories) showing P_sys > 99.5% in the well-designed regime (η_j ≥ 0.88, p_det ≥ 0.90)
+- Dual design envelope analysis resolving a taper-ratio discrepancy in the literature (τ = 3.52 optimistic vs. 12.40 conservative at σ_u = 50 GPa)
+- Variable-length mass-equalized segmentation: N ≈ 83 segments (optimistic) vs. N ≈ 505 (conservative)
+- Lifecycle NPV comparison quantifying the phased-construction revenue advantage  
 
 ---
 

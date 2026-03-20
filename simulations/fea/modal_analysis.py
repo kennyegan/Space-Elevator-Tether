@@ -246,8 +246,9 @@ def solve_modes(K, M, n_modes: int = 10):
     n_dof = K.shape[0]
     n_modes = min(n_modes, n_dof - 2)
 
-    eigenvalues, eigenvectors = eigsh(K, k=n_modes, M=M, which="SM",
-                                       sigma=0, mode="normal")
+    eigenvalues, eigenvectors = eigsh(K, k=n_modes, M=M, which="LM",
+                                       sigma=1e-6, mode="normal",
+                                       maxiter=10000)
 
     omega_sq = np.real(eigenvalues)
     omega_sq = np.maximum(omega_sq, 0)

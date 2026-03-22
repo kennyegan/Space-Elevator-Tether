@@ -554,7 +554,7 @@ def run_batch_vectorized(N: int, eta_j: float, cadence: int,
         total_repairs += result["repairs"]
         all_mttr.extend(result["mttr"])
 
-    P_sys = survivals / n_traj
+    P_sys = min(1.0, max(0.0, survivals / n_traj))
     mttr_arr = np.array(all_mttr) if all_mttr else np.array([])
     mttr_median = float(np.median(mttr_arr)) if len(mttr_arr) > 0 else 0.0
     mttr_mean = float(np.mean(mttr_arr)) if len(mttr_arr) > 0 else 0.0
@@ -906,7 +906,7 @@ def plot_inspection_cadence(sweep_results: dict, pdet_idx: int = -1,
     ax.set_ylabel(r"$P_{\mathrm{sys}}$ (10-year survival)")
     ax.set_title(f"System survival vs. inspection frequency ($N$ = {N_vals[n_idx]})")
     ax.legend(fontsize=6, loc="lower left", ncol=2)
-    ax.set_ylim(bottom=max(0, ax.get_ylim()[0]), top=1.005)
+    ax.set_ylim(bottom=max(0, ax.get_ylim()[0]), top=1.0)
 
     plt.tight_layout()
     if output_path:
@@ -947,7 +947,7 @@ def plot_p_detection_impact(sweep_results: dict, output_path: Path = None):
         f"Impact of detection probability ($N$={N_vals[n_idx]}, cadence=1)"
     )
     ax.legend(fontsize=6, loc="lower right", ncol=2)
-    ax.set_ylim(bottom=max(0, ax.get_ylim()[0]), top=1.005)
+    ax.set_ylim(bottom=max(0, ax.get_ylim()[0]), top=1.0)
 
     plt.tight_layout()
     if output_path:

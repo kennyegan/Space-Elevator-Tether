@@ -178,9 +178,11 @@ def integrate_taper_profile(params: dict, sigma_design: float = None,
     # But for uniform stress: T(r)/A_base = sigma_design*A_ratio(r) exactly.
     # We use the force-balance integral as a consistency check.
     force_integrand = rho * A_ratio * a_net  # [kg/m^3 * (dimless) * m/s^2 = N/m^3 per m^2 of A_base]
-    T_force_balance = sigma_design + integrate.cumulative_trapezoid(
-        force_integrand, r, initial=0.0
-    )
+    # Integrate from the tip downward: T(r) = -∫_r^L ρ A_ratio a_net dr'
+    # Boundary condition: T(tip) = 0. This must match sigma_design * A_ratio(r).
+    T_force_balance = -integrate.cumulative_trapezoid(
+        force_integrand[::-1], r[::-1], initial=0.0
+    )[::-1]
 
     # Stress: sigma(r) = T(r) / A(r) — should be uniform = sigma_design
     sigma = T_per_Abase / A_ratio  # Should be constant = sigma_design
@@ -295,10 +297,15 @@ def compute_stepped_profile(profile: dict, params: dict,
     # 3. Merge small trailing segment
     # ------------------------------------------------------------------
     if len(seg_masses) > 1 and seg_masses[-1] < 0.5 * m_star:
-        # Merge last into previous
-        seg_masses[-2] += seg_masses[-1]
-        seg_masses.pop()
-        boundaries_alt.pop(-2)  # remove the second-to-last internal boundary
+        combined = seg_masses[-2] + seg_masses[-1]
+        if combined <= m_star:
+            # Simple merge — combined is within launch-cap budget
+            seg_masses[-2] = combined
+            seg_masses.pop()
+            boundaries_alt.pop(-2)  # remove internal boundary between merged segments
+        # else: leave small trailing segment as-is.
+        # Merging would exceed m_star (launch cap violation).
+        # A sub-target trailing segment is acceptable.
 
     boundaries = np.array(boundaries_alt)
     masses = np.array(seg_masses)

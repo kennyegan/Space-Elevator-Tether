@@ -177,10 +177,12 @@ def integrate_taper_profile(params: dict, sigma_design: float = None,
     # T(r)/A_base = sigma_design*A_ratio(R) + integral rho*A_ratio*a_net dr'
     # But for uniform stress: T(r)/A_base = sigma_design*A_ratio(r) exactly.
     # We use the force-balance integral as a consistency check.
-    force_integrand = rho * A_ratio * a_net  # [kg/m^3 * (dimless) * m/s^2 = N/m^3 per m^2 of A_base]
-    # Integrate from the tip downward: T(r) = -∫_r^L ρ A_ratio a_net dr'
-    # Boundary condition: T(tip) = 0. This must match sigma_design * A_ratio(r).
-    T_force_balance = -integrate.cumulative_trapezoid(
+    force_integrand = rho * A_ratio * a_net  # [kg/m^3 * (dimless) * m/s^2 = Pa/m per m^2 of A_base]
+    # Force balance: dT/dr = -rho * A(r) * a_net(r) for uniform-stress taper.
+    # Integrating from tip (T(L)=0) inward:
+    #   T(r)/A_base = ∫_r^L rho * A_ratio(r') * a_net(r') dr'
+    # This must match sigma_design * A_ratio(r) exactly.
+    T_force_balance = integrate.cumulative_trapezoid(
         force_integrand[::-1], r[::-1], initial=0.0
     )[::-1]
 

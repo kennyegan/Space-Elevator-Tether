@@ -452,9 +452,7 @@ def plot_taper_validation(profile: dict, stepped: dict,
 
     # --- Right panel: Tension profile ---
     ax = axes[1]
-    ax.plot(alt_km, profile["T"] / 1e9, linewidth=1.0, label="$T(r)$ (uniform stress)")
-    ax.plot(alt_km, profile["T_force_balance"] / 1e9, "--", linewidth=0.8,
-            alpha=0.7, label="$T(r)$ (force balance check)")
+    ax.plot(alt_km, profile["T"] / 1e9, "k-", linewidth=1.0, label="Tension profile")
     ax.set_xlabel("Altitude [km]")
     ax.set_ylabel("Tension / $A_{\\mathrm{base}}$ [GN/m$^2$]")
     ax.set_title("Tension profile")

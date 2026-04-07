@@ -1,0 +1,10 @@
+Property,1D Model,2D No Coriolis,2D With Coriolis,Delta
+T_1 analytical [h],25.3,---,---,---
+T_1 transverse (2D) [h],N/A,30.04,34.80,15.9%
+T_1 longitudinal [h],8.60,10.22,10.46,21.6%
+Joint shift (eta_j 1.0to0.95),2.3%,0.0%,---,---
+Max longitudinal [km],67.3 (quasi-static),---,62.2 (dynamic),---
+Max transverse [km],N/A,---,135.6,NEW
+Peak Delta T / T_mathrm{eq},N/A,---,0.6657,NEW
+Critical climber sep [h],sim25 (noted),---,35,QUANTIFIED
+Min safe separation [h],N/A,---,---,NEW RULE

@@ -1,0 +1,22 @@
+Phase 2 Dynamics — Validation Report
+==================================================
+
+[PASS] K_total min eigenvalue: 7.009876e-05, |min_eig|/||K|| = 6.37e-09
+  Value: 7.009876284613943e-05, Threshold: > 0 or |min_eig|/||K|| < 1e-6 (actual: 6.37e-09)
+
+[PASS] T1_2d = 1.74 h (1D ref: 1.70 h, error: 2.41%)
+  Value: 2.41081371718134, Threshold: 5.0
+
+[PASS] |G + G^T| / |G| = 0.00e+00
+  Value: 0.0, Threshold: 1e-12
+
+[PASS] Energy drift: 0.0000% over 100 h (threshold: 0.1%)
+  Value: 0.0, Threshold: 0.1
+
+[PASS] T1(251 nodes) = 30.03 h, T1(501 nodes) = 30.04 h, diff = 0.02%
+  Value: 0.02005297399331912, Threshold: 5.0
+
+[PASS] 2D shift: 2.44%, 1D shift: 2.32%, diff: 0.12 pp
+  Value: 2.4393530105654193, Threshold: ~2.3% (1D ref)
+
+Summary: 6/6 checks passed

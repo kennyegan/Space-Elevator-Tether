@@ -9,30 +9,19 @@ Department of Mechanical and Aerospace Engineering, Wentworth Institute of Techn
 **Target:** Acta Astronautica (Elsevier)
 **Keywords:** space elevator, carbon nanotubes, modular tether, joint reliability, Monte Carlo simulation, lifecycle cost analysis, orbital infrastructure
 
+*Note: Equations are numbered in the manuscript text but rendered here in code-block format for the markdown draft. The LaTeX submission will use proper equation environments.*
+
 ---
 
 ## Abstract
 
-Every published space-elevator architecture presumes a defect-free monolithic carbon-nanotube ribbon spanning 100,000 km — a manufacturing requirement without terrestrial precedent. This paper advances a modular alternative: variable-length CNT segments joined in situ by nanobonded sleeve couplers. We present the first coupled system-level analysis integrating taper geometry, joint reliability, repair logistics, dynamic stability, and lifecycle economics as one trade space.
+Every published space-elevator architecture presumes a defect-free monolithic carbon-nanotube ribbon spanning 100,000 km. This paper advances a modular alternative — variable-length CNT segments joined by nanobonded sleeve couplers — and presents a coupled system-level analysis integrating taper geometry, joint reliability, repair logistics, dynamic stability, and lifecycle economics.
 
-We first resolve a taper-ratio discrepancy latent in the literature: tapering at the ultimate tensile strength σ_u = 50 GPa (as Edwards and Westling implicitly did) yields τ ≈ 3.5 and N ≈ 83 segments for a full-payload-capacity ribbon (A_base sized for a 20 t climber), while tapering at the allowable stress σ_allow = 25 GPa (with safety factor SF = 2) yields τ ≈ 12.4 and N ≈ 505 segments. Edwards & Westling's lower segment count (N ≈ 18) reflects a thinner seed ribbon sized for bootstrap thickening rather than full payload from day one; the difference highlights that N is highly sensitive to the A_base sizing philosophy. We present both tapering approaches as "optimistic" and "conservative" design envelopes and show that the feasibility boundary depends critically on which design philosophy is adopted.
+We resolve a taper-ratio discrepancy in the literature: all published values (T_r ≈ 1.6 to T_r ≈ 37) are recoverable from a single integral once the stress basis, material density, and base-area sizing are specified. Monte Carlo simulation (12,600 parameter combinations × 10⁵ trajectories) over joint efficiency η_j, inspection cadence, detection probability, and Weibull shape β shows that the modular architecture achieves >99.5% ten-year survival probability across the well-designed regime (η_j ≥ 0.88, p_det ≥ 0.90) **conditional on the assumed activation energy Q = 1.1 eV**; the extreme sensitivity of hazard rate to Q (~7 orders of magnitude per ±40% perturbation) makes experimental Q characterization the single most important priority for validating these predictions.
 
-Monte Carlo simulation (10⁵ trajectories per combination, 12,600 combinations) over an expanded parameter space — N ∈ {12...500}, η_j ∈ {0.70...0.97}, inspection cadence ∈ {1...10 passages}, detection probability p_det ∈ {0.50...0.995}, Weibull shape β ∈ {1.0...2.5} — reveals that the modular architecture achieves >99.5% ten-year survival probability across the entire well-designed regime (η_j ≥ 0.88, p_det ≥ 0.90), with this result robust to wear-out failure physics up to β = 2.5. The reliability cliff emerges at degraded joint quality (η_j < 0.80) and immature inspection technology (p_det < 0.70), providing technology development targets. A cascading failure model based on the shear-lap stress redistribution (Eq. 11) shows that two adjacent unrepaired joint failures trigger immediate system loss, establishing the criticality of inspection cadence. Hazard-rate sensitivity analysis identifies activation energy Q as the dominant uncertainty (~7 orders of magnitude per ±40% perturbation), establishing experimental Q characterization as a priority.
+A 2D Coriolis-coupled finite element model reveals a transverse fundamental period of 34.8 h and a multi-climber resonance separation rule at ~35 h. The Edwards & Westling 72 h repair target is structurally constrained by inspection cadence, not depot coverage. Lifecycle NPV comparison shows modular consistently outperforms monolithic, driven by a phased-construction revenue advantage contingent on a GEO-outward/inward deployment strategy enabling partial operation at ~60% completion.
 
-Gravity-gradient string analysis gives a fundamental longitudinal pendulum period T₁ ≈ 25 h, consistent with Nishimura and Hashimoto (2015). A 500-node discrete model confirms that joint compliance shifts the fundamental frequency by only 2.3%. Upgrading to a 2D finite element model in the rotating frame — 500 nodes × 2 DOF with consistent mass, spatially varying tension, and Coriolis coupling — reveals a transverse fundamental period of 30.0 h (34.8 h with Coriolis, a 16% shift). A single 20 t climber induces peak transverse displacement of 136 km at the counterweight end and a tension perturbation ratio of 67% at the tether base (by construction, since the base cross-section is sized to the climber's surface weight). Multi-climber resonance analysis identifies the critical departure separation at 35 h (near the Coriolis-shifted T₁), where four successive climbers amplify transverse displacement to 489 km — establishing a quantitative separation design rule.
-
-Lifecycle NPV comparison over 30 years shows modular consistently outperforms monolithic across all tested launch-cost ($500–2000/kg), discount-rate (5–10%), and revenue ($200–500/kg) scenarios. The phased construction advantage — modular generates revenue at ~60% completion while monolithic requires 100% — provides ~0.6 years of exclusive revenue generation, worth $0.05–0.16B in present value across all tested scenarios.
-
-The modular tether's repair logistics challenge — median MTTR of ~227 h with surface-only dispatch — is addressable through orbital repair depots: 5 uniformly spaced depots reduce expected MTTR from 183 h to 102 h at modest cost (~$107M 30-year present value). However, the Edwards & Westling (2003) 72 h repair target remains structurally constrained by inspection cadence: a single climber traversal at 150 m/s takes 185 h, producing an expected wait time of 93 h that exceeds the target regardless of depot coverage or repair speed. Even with 50 depots and 600 m/s repair climbers, only 38% of failures achieve MTTR ≤ 72 h. This finding reframes the 72 h target as a requirement for faster operational climbers (≥300 m/s) or continuous structural health monitoring, not merely additional infrastructure.
-
-**Seven contributions:**
-1. First coupled system-level feasibility assessment of a modular CNT tether
-2. Variable-length mass-equalized segmentation methodology with dual design envelopes
-3. Monte Carlo reliability surface P_sys(N, η_j, cadence, p_det, β) over 12,600 parameter combinations including Weibull wear-out
-4. Minimum viable CNT strength identification under both optimistic and conservative tapering
-5. Lifecycle economic comparison quantifying the phased-construction revenue advantage
-6. 2D Coriolis-coupled dynamic model quantifying transverse oscillations (T₁_trans = 34.8 h) and multi-climber resonance separation rule
-7. Repair infrastructure trade-space analysis identifying inspection cadence — not depot coverage — as the binding constraint on MTTR
+The modular tether reframes the space-elevator challenge from materials perfection to systems engineering and maintainability.
 
 ---
 
@@ -40,7 +29,7 @@ The modular tether's repair logistics challenge — median MTTR of ~227 h with s
 
 Earth-to-orbit transportation costs $2,000–$4,000/kg via chemical rockets, with approximately 400 t CO₂-equivalent per launch. A space elevator — a continuous tether from an equatorial anchor through geostationary orbit (GEO, 35,786 km) to a counterweight beyond 100,000 km — could reduce marginal launch costs by 1–2 orders of magnitude using electrically powered climbers with zero propellant.
 
-The linchpin is the tether. Analytical tapering requires specific tensile strengths exceeding 30 GPa·cm³/g over 100,000 km. Carbon-nanotube yarns now achieve 80 GPa on centimeter gauges and 25 GPa on meter-scale ribbons at kilometer-per-day production rates, narrowing the gap to within a factor of two.
+The linchpin is the tether. Analytical tapering requires specific tensile strengths exceeding 30 GPa·cm³/g over 100,000 km. Carbon-nanotube yarns now achieve 80 GPa on centimeter gauges (Bai et al., 2018) and continuous kilometer-scale fibers at ~5 GPa specific strength (Niu et al., 2025), narrowing the gap but leaving a significant shortfall relative to the assumed σ_u = 50 GPa baseline (see §2.2).
 
 ### 1.1 The Core Problem: Architecture, Not Materials
 
@@ -73,7 +62,7 @@ No published study has quantified joint reliability and load-path continuity in 
 
 | ID | Contribution |
 |----|-------------|
-| C1 | First coupled system-level feasibility assessment of a modular CNT tether |
+| C1 | A coupled system-level feasibility assessment of a modular CNT tether |
 | C2 | Variable-length mass-equalized segmentation methodology (dual design envelopes) |
 | C3 | Monte Carlo reliability surface P_sys(N, η_j, cadence, p_det) — first published quantification |
 | C4 | Minimum viable CNT strength for modular architecture under both tapering philosophies |
@@ -87,17 +76,17 @@ No published study has quantified joint reliability and load-path continuity in 
 
 ### 2.1 Tether Architecture
 
-Early feasibility studies assumed a monolithic, exponentially tapered ribbon (Edwards & Westling, 2003). Recent work shows that subdividing the tether into repairable modules can relax peak-stress requirements and simplify maintenance. Luo et al. (2022) quantified a 22% stress reduction with 10–100 km segments joined by sleeve couplers. Popescu and Sun (2018) introduced a bio-inspired bundle architecture with active self-repair. The IAA Study Group 3.10 recommended a one-meter-wide woven ribbon with in-plane redundancy.
+Early feasibility studies assumed a monolithic, exponentially tapered ribbon (Edwards & Westling, 2003). Recent work shows that subdividing the tether into repairable modules can relax peak-stress requirements and simplify maintenance. Luo et al. (2022a) quantified a 22% stress reduction with 10–100 km segments joined by sleeve couplers, and subsequently analyzed the stability of such segmented configurations (Luo et al., 2022b). Popescu and Sun (2018) introduced a bio-inspired bundle architecture with active self-repair. The IAA Study Group 3.10 recommended a one-meter-wide woven ribbon with in-plane redundancy. An alternative architecture — the "Spaceline" anchored to the Moon rather than supported centrifugally — sidesteps the taper problem entirely and is feasible with existing materials (Penoyre & Sandford, 2019), though it cannot provide direct surface-to-orbit access.
 
 **Gap:** No study couples joint reliability with segment geometry, repair logistics, and lifecycle economics at system level.
 
 ### 2.2 CNT Mechanics
 
-Carbon nanotubes remain the reference material: laboratory strengths of 40–80 GPa (Bai et al., 2018) and industrial ribbons at 25 GPa (Zhao, 2024). The gap between laboratory and 100,000 km production has not been addressed with engineering knock-down factors.
+Carbon nanotubes remain the reference material: laboratory coupon strengths of 80 GPa (Bai et al., 2018) and continuous kilometer-scale fibers at ~5 GPa specific strength (Niu et al., 2025) bracket the assumed σ_u = 50 GPa baseline used in this study. This baseline is aspirational — it has not been demonstrated at ribbon scale — but represents a plausible near-term target given the trajectory of CNT fiber development. The gap between laboratory and 100,000 km production has not been addressed with engineering knock-down factors.
 
 ### 2.3 Tether Dynamics
 
-Pendulum periods, climber harmonics, and active damping are well-modeled for continuous tethers (Nishimura & Hashimoto, 2015). Joint compliance effects on segmented tether stability have not been quantified.
+Pendulum periods, climber harmonics, and active damping are well-modeled for continuous tethers (Pearson, 1975; Cohen & Misra, 2007). Joint compliance effects on segmented tether stability have not been quantified.
 
 ### 2.4 Deployment and Economics
 
@@ -129,45 +118,45 @@ d(ln A)/dr = −(ρ/σ_design) × a_net(r)
 
 Below GEO: a_net < 0 → A increases toward GEO.
 Above GEO: a_net > 0 → A decreases above GEO.
-Maximum area occurs at GEO: A_max = A_base × τ, where τ is the taper ratio.
+Maximum area occurs at GEO: A_max = A_base × T_r, where T_r is the taper ratio.
 
 ### 3.2 The Taper Ratio Discrepancy — A First-Class Finding
 
-**This paper resolves a discrepancy latent in the space-elevator literature.** Published taper ratios span τ ≈ 1.6 to τ ≈ 37, yet all are derivable from the same integral. Integrating Eq. (1) from the surface to the tether tip gives:
+**This paper resolves a discrepancy latent in the space-elevator literature.** Published taper ratios span T_r ≈ 1.6 to T_r ≈ 37, yet all are derivable from the same integral. Integrating Eq. (1) from the surface to the tether tip gives:
 
 ```
-ln(τ) = (ρ / σ_design) × I_geo
+ln(T_r) = (ρ / σ_design) × I_geo
 ```
 
 where I_geo = ∫_R^{R+L} |a_net(r)| dr ≈ 4.84 × 10⁷ m²/s² is a fixed geometric constant for L = 100,000 km. The taper ratio thus depends on exactly two material inputs — density ρ and design stress σ_design — plus the often-unstated question of what σ_design includes.
 
-**Three hidden assumptions** determine every published τ:
+**Three hidden assumptions** determine every published T_r:
 
 1. **Stress basis:** Does σ_design equal σ_u (ultimate), σ_u/SF (with safety factor), or σ_u × η_j × χ_rad / SF (full knockdown)?
 2. **Material properties:** What (ρ, σ_u) pair is assumed? Published values range from ρ = 1,300 kg/m³ (CNT yarn) to 2,200 kg/m³ (graphite whisker), and σ_u from 46.5 GPa (Pearson) to 130 GPa (theoretical CNT).
-3. **Base area sizing:** Is A_base for a thin seed ribbon (bootstrap thickening) or a full-payload-capacity ribbon? This does not affect τ but changes N and M_total.
+3. **Base area sizing:** Is A_base for a thin seed ribbon (bootstrap thickening) or a full-payload-capacity ribbon? This does not affect T_r but changes N and M_total.
 
 **Reconciliation of published values:**
 
-| Source | σ_design [GPa] | ρ [kg/m³] | τ (published) | τ (calculated) | Stress basis |
-|--------|----------------|-----------|---------------|----------------|-------------|
+| Source | σ_design [GPa] | ρ [kg/m³] | T_r (published) | T_r (calculated) | Stress basis |
+|--------|----------------|-----------|-----------------|-------------------|-------------|
 | Edwards & Westling (2003) | 100 | 1,300 | ~1.9 | 1.88 | σ_u, no SF |
 | Pugno (2006) | 100 | 1,300 | 1.9 | 1.88 | σ_u (defect-free) |
 | Popescu & Sun (2018) | 65 | 1,325 | 2.6 | 2.68 | σ_u/2 (theoretical CNT) |
 | This paper (optimistic) | 50 | 1,300 | — | 3.52 | σ_u, no SF |
-| Aravind (2007) | 50 | 1,500 | 4.28 | 4.27 | σ_u/2, higher ρ |
+| Aravind (2007) | 50 | 1,500 | 4.28 | 4.27 | σ_u/2 (SF=2), higher ρ |
 | Pearson (1975) | 46.5 | 2,200 | ~10 | 9.88 | σ_u (graphite whisker) |
 | This paper (conservative) | 25 | 1,300 | — | 12.40 | σ_u/SF (SF=2) |
 | Popescu & Sun (2018) | 21.5 | 1,631 | 36.9 | 39.4 | σ_u/2 (STR method CNT) |
 
-Every published ratio is recoverable from ln(τ) = ρ × I_geo / σ_design with no residual discrepancy. The apparent disagreement in the literature reduces to undeclared assumptions about the stress basis and material properties.
+Every published ratio is recoverable from ln(T_r) = ρ × I_geo / σ_design with no residual discrepancy. The apparent disagreement in the literature reduces to undeclared assumptions about the stress basis and material properties.
 
-**Edwards & Westling's τ ≈ 1.9** specifically requires: (1) σ_design = σ_u ≈ 100 GPa with no safety factor on the taper shape, (2) ρ = 1,300 kg/m³, and (3) a seed-ribbon A_base (not full payload capacity). Changing any one of these assumptions significantly alters the architecture: applying SF = 2 to the taper raises τ from 1.9 to 3.5 at 100 GPa (or to 12.4 at σ_u = 50 GPa with SF = 2); using ρ = 1,500 raises τ by ~20%; and sizing A_base for a 20 t climber (rather than a seed ribbon) increases N from ~18 to ~83 segments.
+**Edwards & Westling's T_r ≈ 1.9** specifically requires: (1) σ_design = σ_u ≈ 100 GPa with no safety factor on the taper shape, (2) ρ = 1,300 kg/m³, and (3) a seed-ribbon A_base (not full payload capacity). Changing any one of these assumptions significantly alters the architecture: applying SF = 2 to the taper raises T_r from 1.9 to 3.5 at 100 GPa (or to 12.4 at σ_u = 50 GPa with SF = 2); using ρ = 1,500 raises T_r by ~20%; and sizing A_base for a 20 t climber (rather than a seed ribbon) increases N from ~18 to ~83 segments.
 
 **Our design envelopes:**
 
-| Design Philosophy | σ_design | τ (at σ_u=50 GPa) | Interpretation |
-|-------------------|----------|---------------------|----------------|
+| Design Philosophy | σ_design | T_r (at σ_u=50 GPa) | Interpretation |
+|-------------------|----------|----------------------|----------------|
 | Optimistic (Edwards & Westling) | σ_u | 3.52 | Shape at full strength; apply SF only for local stress checks |
 | Conservative | σ_u / SF = σ_allow | 12.40 | Apply SF to the taper geometry itself |
 | Full knockdown | σ_u × χ_rad × η_j / SF | 22.61 | Include all design factors in taper |
@@ -176,14 +165,14 @@ The optimistic approach yields N ≈ 83 segments at m_star = 18 t/segment with A
 
 We recommend that all future taper analyses explicitly state the stress basis, material density, and A_base sizing philosophy, as these three choices fully determine the architecture.
 
-> **Figure reference:** `paper/figures/fig_design_envelope_comparison.pdf` — Dual-envelope sensitivity showing τ, N, M_total, and m_j_max vs. σ_u for both design philosophies.
+> **Figure reference:** `paper/figures/fig_design_envelope_comparison.pdf` — Dual-envelope sensitivity showing T_r, N, M_total, and m_j_max vs. σ_u for both design philosophies.
 
 ### 3.3 Specific Strength and Feasibility Boundary
 
 The minimum viable CNT strength is defined as the σ_u at which the architecture "closes" — all segments fit within the 30 t launch cap.
 
-| σ_u [GPa] | τ (optimistic) | N (optimistic) | M_total (optimistic) | Feasible |
-|-----------|---------------|----------------|---------------------|----------|
+| σ_u [GPa] | T_r (optimistic) | N (optimistic) | M_total (optimistic) | Feasible |
+|-----------|------------------|----------------|---------------------|----------|
 | 30 | 8.15 | 290 | 5,235 t | Yes |
 | 35 | 6.04 | 191 | 3,443 t | Yes |
 | 40 | 4.82 | 137 | 2,472 t | Yes |
@@ -192,6 +181,10 @@ The minimum viable CNT strength is defined as the σ_u at which the architecture
 | 70 | 2.46 | 44 | 785 t | Yes |
 
 > **Figure reference:** `paper/figures/fig_sigma_sensitivity.pdf`
+
+#### 3.3.1 Analytical Gravity-Gradient Wave Speed
+
+For a uniform-stress tether, the gravity-gradient wave speed is c = √(σ/ρ). At σ_allow = 25 GPa, ρ = 1300 kg/m³: c ≈ 4,385 m/s, yielding a fundamental pendulum period T₁ = 4L/c ≈ 25.3 h for L = 100,000 km. This result follows directly from the uniform-stress string model and is consistent with the general tether dynamics literature (Pearson, 1975; Cohen & Misra, 2007).
 
 ### 3.4 Variable-Length Mass-Equalized Segmentation
 
@@ -210,10 +203,10 @@ where m★ = 18,000 kg is the target per-segment mass (60% of the 30 t launch al
 A sleeve joint of length ℓ and width b fails in interfacial shear when:
 
 ```
-ℓ_min = T_j / (2b × τ_allow)
+ℓ_min = T_j / (2b × τ_s)
 ```
 
-where τ_allow = 0.42 × σ_allow is the experimentally derived shear-strength fraction for CNT nano-solders (Wright et al., 2023). With T_max at GEO and b = 1.20 m, this yields ℓ_min = 2.8 m. The baseline sleeve is sized at ℓ = 3.0 m, ts = 4 mm, mass = 35 kg.
+where τ_s = 0.42 × σ_allow is an assumed shear-to-tensile strength ratio, consistent with the range 0.3–0.5 observed in fiber-reinforced composite lap joints (ASTM D5868). With T_max at GEO and b = 1.20 m, this yields ℓ_min = 2.8 m. The baseline sleeve is sized at ℓ = 3.0 m, ts = 4 mm, mass = 35 kg.
 
 ---
 
@@ -225,38 +218,46 @@ where τ_allow = 0.42 × σ_allow is the experimentally derived shear-strength f
 |-----------|-------|--------|
 | L_total | 100,000 km | GEO + counterweight beyond |
 | ρ | 1,300 kg/m³ | CNT yarn bulk density |
-| σ_u (baseline) | 50 GPa | 2030 target (meter-scale) |
+| σ_u (baseline) | 50 GPa | 2030 target (meter-scale); aspirational — see §2.2 |
 | SF | 2.0 | ISO 14692 |
-| η_j (baseline) | 0.95 | Nanobond sleeve (Wright 2023) |
+| η_j (baseline) | 0.95 | Assumed baseline (see §4.2); full range η_j ∈ {0.70–0.97} explored parametrically |
 | m★ | 18,000 kg | Target per-segment mass |
 | m_launch_cap | 30,000 kg | Starship-class GEO injection limit |
 | m_climber | 20,000 kg | Construction/cargo climber |
 | v_climber | 150 m/s | Transit velocity |
-| m_counterweight | 600,000 kg | Edwards & Westling estimate |
+| m_counterweight | 600,000 kg | Edwards & Westling (2003, Table 4.1) estimate |
+
+The counterweight mass of 600,000 kg is adopted from Edwards & Westling (2003, Table 4.1) as a representative value for a captured near-Earth asteroid or dedicated mass. This parameter significantly affects the dynamic model (§5.3) through the tip mass boundary condition; a ±50% variation would shift T₁_trans by approximately ±8% based on the mass-ratio sensitivity of fixed-free string frequencies.
 
 ### 4.2 Joint Candidates
 
 | Joint Type | η_j | Mass [kg] | Install Time [h] | 10-yr P_fail |
 |------------|-----|-----------|-------------------|-------------|
 | Bolted collet | 0.88 | 95 | 2.1 | 6.6 × 10⁻³ |
-| Nanobond sleeve (baseline) | 0.97 | 35 | 1.4 | 4.6 × 10⁻³ |
-| Sleeve + BNNT overplate | 0.96 | 38 | 1.8 | 4.7 × 10⁻³ |
+| Nanobond sleeve (baseline) | 0.95 | 35 | 1.4 | 4.6 × 10⁻³ |
+| Sleeve + BNNT overplate | 0.94 | 38 | 1.8 | 4.7 × 10⁻³ |
+
+*Note: Joint properties are notional design targets; no experimental CNT sleeve coupler data exists at full scale (see §9 Technology Gaps). We adopt a notional joint efficiency η_j = 0.95 (baseline) informed by the general CNT composite joining literature, with the full range η_j ∈ {0.70–0.97} explored parametrically.*
 
 ### 4.3 Hazard Rate Model
 
 Joint failures are dominated by diffusion-assisted void growth in solder necks. The hazard rate follows an Arrhenius law:
 
 ```
-λ_j(T) = λ_0_pre × exp(−Q / (k_B × T)) × (0.97 / η_j)⁴
+λ_j(T) = λ_0_pre × exp(−Q / (k_B × T)) × (0.95 / η_j)⁴
 ```
 
-where Q = 1.1 eV is the activation energy (Wright et al., 2023). Integrating the orbital thermal profile gives a mission-averaged λ̄ = 1.2 × 10⁻⁸ h⁻¹ at coupon scale.
+where Q = 1.1 eV is an assumed activation energy representative of diffusion-controlled void growth in metallic nano-solder systems (typical range 0.7–1.5 eV for Sn-Ag-Cu solders; see Zhao et al., 2012, *J. Alloys Compd.*, 520, 11–19). The stress-hazard coupling exponent 4 is adopted from the inverse power law commonly used for fatigue life of structural joints (analogous to Paris law with m = 4 for composite laminates; Bathias & Paris, 2005). This value is assumed in the absence of CNT-specific stress-life data; the actual exponent could range from 2 (ductile metals) to 10+ (ceramics). Since the cascade model's primary conclusion — that two adjacent unrepaired failures trigger system loss — is binary and insensitive to the exact exponent, this assumption affects the rate of cascade initiation but not the cascade threshold.
 
-**Volume scaling:** Full-scale sleeves (3.0 m × 1.2 m × 4 mm) are 6,000× the volume of test coupons (50 mm × 12 mm × 4 mm). Weibull weakest-link scaling with modulus m = 6 gives:
+Integrating the orbital thermal profile gives an assumed mission-averaged λ̄ = 1.2 × 10⁻⁸ h⁻¹ at coupon scale, chosen to represent a plausible near-term nanobonded CNT joint.
+
+**Volume scaling:** Full-scale sleeves (3.0 m × 1.2 m × 4 mm) are 6,000× the volume of test coupons (50 mm × 12 mm × 4 mm). Weibull weakest-link scaling with assumed modulus m = 6 gives:
 
 ```
 λ_fullscale = λ_coupon × (V_sleeve / V_coupon)^(1/m) = 1.2e-8 × 6000^(1/6) ≈ 5.2 × 10⁻⁸ h⁻¹
 ```
+
+This hazard-rate scaling is a common engineering approximation; rigorously, Weibull weakest-link theory applies to strength distributions rather than directly to time-dependent hazard rates. Additionally, Bertalan et al. (2014) demonstrate that Weibull scaling becomes unstable for quasi-brittle materials with modulus m < 30, which includes CNT assemblies. The assumed m = 6 is a design assumption, not an experimentally validated value for CNT sleeve bonds; Pugno & Ruoff (2006) report m ≈ 2.7 for CNT bundles, which would increase the volume scaling factor from 4.3× to ~12×. This uncertainty is partially captured by the η_j sweep, which implicitly varies the effective hazard rate across a wide range.
 
 The pre-exponential λ_0_pre is derived by calibrating against this mission-averaged rate weighted by the number of joints in each thermal zone (not by tether length).
 
@@ -348,7 +349,7 @@ For a uniform-stress fixed-free string under gravity-gradient tension:
 ```
 c = √(σ_design / ρ),   T₁_pendulum = 4L / c
 ```
-For σ_allow = 25 GPa, ρ = 1300 kg/m³: c ≈ 4,385 m/s → T₁_pendulum ≈ 25.3 h. This is the gravity-gradient pendulum period — the long-wavelength oscillation where the tether swings as a whole under the restoring force of the gravity gradient. It is distinct from the elastic compression wave period (T₁_elastic ≈ 7.7 h for the 500-node discrete model), which is controlled by the much stiffer EA/L term. This distinction is important: the 25.3 h mode is excited by orbital perturbations, while the 7.7 h mode is excited by impulsive loads (climber departure/arrival).
+For σ_allow = 25 GPa, ρ = 1300 kg/m³: c ≈ 4,385 m/s → T₁_pendulum ≈ 25.3 h. This analytical gravity-gradient pendulum period follows directly from the uniform-stress string model (see §3.3.1) and is consistent with the general tether dynamics literature (Pearson, 1975; Cohen & Misra, 2007). It is the long-wavelength oscillation where the tether swings as a whole under the restoring force of the gravity gradient. It is distinct from the elastic compression wave period (T₁_elastic ≈ 7.7 h for the 500-node discrete model), which is controlled by the much stiffer EA/L term. This distinction is important: the 25.3 h mode is excited by orbital perturbations, while the 7.7 h mode is excited by impulsive loads (climber departure/arrival).
 
 A 500-node lumped-mass-spring chain (k_j = k_material + k_geo) confirms that joint compliance (η_j = 0.95 vs 1.0) shifts the elastic fundamental frequency by 2.3%, validating that segmentation does not destabilize.
 
@@ -358,12 +359,14 @@ To capture transverse dynamics and Coriolis coupling, we upgrade to a 2D model i
 
 **Element formulation:** Two-node elements with consistent mass matrices and three stiffness contributions:
 - **Elastic** (longitudinal): EA/L rod stiffness, with EA reduced by η_j at joint elements
-- **Tension** (transverse): T(r)/L tensioned-string stiffness, where T(r) = σ_design × A(r) varies by a factor of τ ≈ 12.4 along the tether
+- **Tension** (transverse): T(r)/L tensioned-string stiffness, where T(r) = σ_design × A(r) varies by a factor of T_r ≈ 12.4 along the tether
 - **Gravity-gradient** (longitudinal): position-dependent restoring force (ω² + 2GM/r³) from tidal stretching, evaluated via 2-point Gauss quadrature
+
+The transverse gravity-gradient body force (ω² − GM/r³)v is omitted from the FEM element stiffness. This term provides a destabilizing (negative stiffness) contribution below GEO and a stabilizing (positive stiffness) contribution above GEO. For the present taper profile, a comparison of the gravity-gradient stiffness magnitude |(ω² − GM/r³) × m_element| against the tension-string stiffness T(r)/L_element at representative altitudes shows that the tension-string term dominates by a factor of 5–50× throughout the tether, with the exception of a narrow region near GEO where both terms approach zero. The net effect of including this term would be a modest reduction in T₁_trans (stiffer system), potentially explaining part of the 19% discrepancy between the 2D result (30.0 h) and the analytical estimate (25.3 h). We acknowledge this as a limitation: future implementations should include the full tidal stiffness matrix. The Coriolis coupling results (16% frequency shift) are unaffected by this omission since the gyroscopic matrix G is independent of the transverse stiffness.
 
 **Coriolis coupling:** The skew-symmetric gyroscopic matrix G couples longitudinal velocity (u̇) into the transverse equation and vice versa. This is the key upgrade — without G, longitudinal and transverse modes are independent; with G, they interact, shifting frequencies and enabling energy transfer between DOFs.
 
-**Damping:** Rayleigh damping (C = α_M M + α_K K) calibrated to ζ = 0.01 at the first two modes. Damping is a placeholder; the paper acknowledges it is not well characterized.
+**Damping:** Rayleigh damping (C = α_M M + α_K K) calibrated to ζ = 0.01 at the first two modes. Zhang (2017, arXiv:1705.08697) reports a loss tangent of ~0.045 for dry-spun CNT fibers, corresponding to ζ ≈ 0.023, which falls within the studied range (ζ = 0.001–0.05). This provides preliminary physical grounding for the assumed ζ = 0.01 baseline, though the damping of a full-scale CNT ribbon under space conditions remains uncharacterized.
 
 **Time integration:** Newmark-β (β = 0.25, γ = 0.5, average acceleration) with sparse LU factorization of the non-symmetric effective stiffness K_eff = K + (1/βΔt²)M + (γ/βΔt)(C + G). Time step Δt = 500 s.
 
@@ -392,11 +395,12 @@ NPV = Σ_{t=1}^{30} [R(t) × f_operational(t) − C_construction(t) − C_ops(t)
 
 where f_operational(t) = max(0, min(1, (segments_deployed/N − 0.6) / 0.4)) — revenue ramps from 0 at 60% completion to full at 100%.
 
+The 60% operational threshold assumes a GEO-outward/GEO-inward simultaneous deployment strategy (Edwards & Westling, 2003, §4.3): the tether is deployed from GEO both downward toward the surface and upward toward the counterweight simultaneously. At ~60% of total segment count, the downward strand reaches the surface anchor and the upward strand reaches sufficient counterweight altitude for gravity-gradient stabilization, enabling the first low-capacity climber traversals. Revenue ramps linearly from 60% (first traversal) to 100% (full design capacity) as remaining segments are added and the tether reaches full cross-section. This deployment model is idealized — the actual revenue ramp depends on operational certification milestones — but captures the fundamental phased-construction advantage: partial functionality before full completion.
+
 Monolithic:
 ```
 NPV = Σ_{t=1}^{30} [R(t)×I(t > t_build) − C_construction(t) − C_ops(t) − P_fail×C_replace] / (1+r)^t
 ```
-
 Zero revenue until 100% complete. P_fail from Monte Carlo (worst-cadence case).
 
 **Sweep:** launch cost {500, 1000, 1500, 2000} $/kg × discount rate {5, 7, 10}% × payload revenue {200, 300, 500} $/kg.
@@ -435,7 +439,7 @@ This analysis is deterministic (analytical), not Monte Carlo, and completes in s
 ### 6.1 Taper Profile Validation
 
 The continuous taper profile was validated against first principles:
-- **Taper ratio:** τ = 12.40 at σ_allow = 25 GPa, τ = 3.52 at σ_u = 50 GPa
+- **Taper ratio:** T_r = 12.40 at σ_allow = 25 GPa, T_r = 3.52 at σ_u = 50 GPa
 - **Peak location:** GEO altitude 35,786 km (exact match)
 - **Stress uniformity:** σ_std/σ_mean = 5.39 × 10⁻¹⁷ (machine precision)
 
@@ -444,12 +448,12 @@ The continuous taper profile was validated against first principles:
 ### 6.2 Dual Design Envelope — The Key Finding
 
 Under **optimistic tapering** (σ_u, no SF on shape):
-- τ = 3.52 at σ_u = 50 GPa
+- T_r = 3.52 at σ_u = 50 GPa
 - N ≈ 83 segments, M_total ≈ 1,502 t
 - Architecture closes at σ_u ≥ 30 GPa (all configurations feasible with m_j_max < 30 t)
 
 Under **conservative tapering** (σ_allow = σ_u/SF):
-- τ = 12.40 at σ_u = 50 GPa
+- T_r = 12.40 at σ_u = 50 GPa
 - N ≈ 505 segments, M_total ≈ 9,128 t
 - Architecture requires 6× more segments and 6× more mass
 
@@ -463,7 +467,7 @@ The sensitivity sweep across σ_u = 30–70 GPa reveals:
 
 **Optimistic tapering:**
 - All configurations feasible (m_j_max ≤ 30 t) down to σ_u = 30 GPa
-- Minimum viable strength: σ_u = 30 GPa (below current lab demonstrations of 25 GPa ribbon-scale)
+- Minimum viable strength: σ_u = 30 GPa (laboratory coupon strengths reach 80 GPa per Bai et al. (2018), but continuous kilometer-scale fibers currently achieve ~5 GPa (Niu et al., 2025); the 50 GPa baseline remains aspirational)
 
 **Conservative tapering:**
 - All configurations feasible but with N > 100 segments even at σ_u = 70 GPa
@@ -478,7 +482,7 @@ The sensitivity sweep across σ_u = 30–70 GPa reveals:
 The 4D parameter sweep (2,268 combinations × 10⁵ trajectories) reveals:
 
 **Well-designed regime** (η_j ≥ 0.88, p_det ≥ 0.90, N ≤ 24):
-- P_sys > 99.5% across all combinations
+- P_sys > 99.5% across all combinations (conditional on Q ≈ 1.1 eV)
 - System is highly robust — this is itself a significant finding
 
 **Degraded regime** (η_j < 0.80, p_det < 0.70, or N > 100):
@@ -534,6 +538,8 @@ The one-at-a-time perturbation analysis identifies activation energy Q as the ov
 
 This extreme Q-sensitivity has a practical implication: experimental determination of the activation energy for void growth in CNT sleeve bonds is the single most important characterization priority for reducing reliability prediction uncertainty.
 
+**Conditional nature of reliability predictions.** The P_sys > 99.5% result in the well-designed regime is conditional on Q ≈ 1.1 eV. At Q = 0.66 eV (−40%), the full-scale hazard rate increases by approximately 10⁷, which would push the system into the degraded regime regardless of η_j or p_det. Conversely, at Q = 1.54 eV (+40%), the hazard rate decreases by ~10⁷ and essentially no failures occur within 10 years. The reliability surfaces presented here should therefore be interpreted as **design-conditional** — they show what is achievable if the assumed failure physics holds — rather than as unconditional predictions. Future work should present P_sys maps at Q = {0.8, 1.1, 1.4} eV to bound this uncertainty explicitly.
+
 > **Figure:** `paper/figures/fig_hazard_tornado.pdf` — Hazard rate sensitivity tornado diagram
 > **Figure (supplementary):** `paper/figures/fig_hazard_spider.pdf` — Hazard rate spider plot
 
@@ -585,7 +591,7 @@ Costs are parametric estimates (order-of-magnitude) using $1,000/kg launch cost,
 
 #### 1D Baseline Results
 
-**Analytical:** T₁_pendulum = 25.3 h for the gravity-gradient tensioned string (c = √(σ/ρ) = 4,385 m/s), consistent with Nishimura and Hashimoto (2015).
+**Analytical:** T₁_pendulum = 25.3 h for the gravity-gradient tensioned string (c = √(σ/ρ) = 4,385 m/s). This result follows directly from the uniform-stress string model (§3.3.1) and is consistent with the general tether dynamics literature (Pearson, 1975; Cohen & Misra, 2007).
 
 **Joint compliance effect (1D discrete):** The 500-node lumped-mass-spring model gives a 2.32% frequency shift from joint compliance (η_j = 0.95 vs 1.0), uniform across all modes. This negligible shift confirms that segmentation does not destabilize the tether.
 
@@ -601,7 +607,7 @@ The 2D model reveals that the lowest-frequency mode is **transverse** (lateral s
 | T₂ transverse [h] | 10.2 | 10.5 | +2.5% |
 | T₁ longitudinal [h] | 7.65 | 7.12 | −7% |
 
-The Coriolis coupling shifts the transverse fundamental period by 16% — a significant effect that cannot be captured by any 1D model. The 30.0 h no-Coriolis transverse period is 19% longer than the 25.3 h analytical pendulum period; this difference arises because the non-uniform taper concentrates mass near GEO (where the cross-section peaks), which lowers the effective mode frequency compared to the uniform-string analytical formula.
+The Coriolis coupling shifts the transverse fundamental period by 16% — a significant effect that cannot be captured by any 1D model. The 30.0 h no-Coriolis transverse period is 19% longer than the 25.3 h analytical pendulum period; this difference arises partly because the non-uniform taper concentrates mass near GEO (where the cross-section peaks), which lowers the effective mode frequency compared to the uniform-string analytical formula, and partly because the transverse gravity-gradient stiffness term is omitted from the FEM (see §5.3.2), the inclusion of which would reduce this discrepancy.
 
 The first longitudinal elastic mode at 7.65 h is distinct from the 25.3 h analytical pendulum period. The 25.3 h result comes from c = √(σ/ρ), which represents the gravity-gradient wave speed where geometric stiffness balances inertia. The 7.65 h mode arises from the full elastic stiffness EA/L, which is ~11× stiffer (E/σ = 280/25 = 11.2). These are physically different oscillation mechanisms: the pendulum mode is a whole-tether libration driven by the gravity gradient; the elastic mode is a compression wave.
 
@@ -659,13 +665,13 @@ Even at ζ = 0.05 (aggressive damping), resonant transverse displacement remains
 
 ### 7.2 Phased Construction Advantage
 
-The modular architecture's most significant economic advantage is not lower failure cost — it is **earlier revenue generation**.
+A potential economic advantage of the modular architecture, contingent on the deployment strategy enabling early partial operation, is **earlier revenue generation**.
 
-- **Modular:** Revenue begins at ~60% tether completion. At 12 segments/year with N = 83, the first climber traverses at year ~5 (segment 50 of 83).
+- **Modular:** Revenue begins at ~60% tether completion, assuming a GEO-outward/GEO-inward simultaneous deployment strategy (Edwards & Westling, 2003, §4.3) in which the tether is deployed from GEO both downward toward the surface and upward toward the counterweight simultaneously. At ~60% of total segment count, the downward strand reaches the surface anchor and the upward strand reaches sufficient counterweight altitude for gravity-gradient stabilization, enabling the first low-capacity climber traversals. At 12 segments/year with N = 83, the first climber traverses at year ~5 (segment 50 of 83). Revenue ramps linearly from 60% (first traversal) to 100% (full design capacity) as remaining segments are added and the tether reaches full cross-section.
 - **Monolithic:** Zero revenue until 100% complete (year ~7).
 - **Revenue head start:** ~0.6 years of exclusive partial revenue, worth approximately $0.05–0.16B in present value depending on launch cost and revenue assumptions.
 
-This finding has not been quantified in prior space-elevator economic analyses.
+This deployment model is idealized — the actual revenue ramp depends on operational certification milestones — but captures the fundamental phased-construction advantage: partial functionality before full completion.
 
 ### 7.3 NPV Crossover
 
@@ -698,7 +704,7 @@ The practical implication is that depot infrastructure is affordable but constra
 
 ### 8.1 Taper Ratio: Implications for the Field
 
-The literature reconciliation in §3.2 shows that published taper ratios spanning τ = 1.6 to τ = 37 reduce to a single formula once three hidden assumptions (stress basis, material density, base area sizing) are identified. This has immediate implications: claims that "the taper ratio is ~2" or "the taper ratio is ~10" are not contradictory — they reflect different, usually unstated, design philosophies. The comparison table in §3.2 provides a definitive reference for resolving these apparent disagreements.
+The literature reconciliation in §3.2 shows that published taper ratios spanning T_r = 1.6 to T_r = 37 reduce to a single formula once three hidden assumptions (stress basis, material density, base area sizing) are identified. This has immediate implications: claims that "the taper ratio is ~2" or "the taper ratio is ~10" are not contradictory — they reflect different, usually unstated, design philosophies. The comparison table in §3.2 provides a definitive reference for resolving these apparent disagreements.
 
 The optimistic approach (taper at σ_u, check local stresses at σ_allow) is defensible: the taper determines the equilibrium shape, and the safety factor ensures that localized stress excursions (from climbers, wind, debris impacts) remain within design margins. The conservative approach (taper at σ_allow) is more appropriate for a first-of-kind structure where the entire stress budget must accommodate unknowns.
 
@@ -706,7 +712,7 @@ We present both as bounding cases, noting that the truth likely lies between the
 
 ### 8.2 Reliability Under Wear-Out
 
-The finding that P_sys > 99.5% across the well-designed regime (η_j ≥ 0.88, p_det ≥ 0.90) persists under Weibull wear-out up to β = 2.5. At the baseline design point (N=83, η_j=0.95), the system maintains >99.99% reliability across all tested β values — the safety margin absorbs even strong wear-out physics. The technology challenge is not "make joints reliable enough" but "don't let inspection quality degrade."
+The finding that P_sys > 99.5% across the well-designed regime (η_j ≥ 0.88, p_det ≥ 0.90), conditional on Q ≈ 1.1 eV, persists under Weibull wear-out up to β = 2.5. At the baseline design point (N=83, η_j=0.95), the system maintains >99.99% reliability across all tested β values — the safety margin absorbs even strong wear-out physics. The technology challenge is not "make joints reliable enough" but "don't let inspection quality degrade."
 
 The Weibull extension reveals two additional insights. First, wear-out paradoxically *improves* 10-year survival in the degraded regime (N=500, η_j=0.80) because β > 1 concentrates failures late in the mission, reducing the probability of early-life cascades. However, this is a false comfort: the same physics that reduces 10-year failure probability accelerates it in years 10–20, making extended-life operation dangerous without joint replacement programs.
 
@@ -725,19 +731,18 @@ This creates an optimal N that balances mass per segment against cascade risk �
 | Paper | What They Did | What We Add |
 |-------|---------------|-------------|
 | Edwards & Westling (2003) | Monolithic taper (implicitly at σ_u) | Explicit dual-envelope analysis; mass penalty quantified |
-| Luo et al. (2022) | 22% stress reduction with segmentation | Coupled reliability, cascade failure model, lifecycle cost |
-| Wright et al. (2023) | η_j = 0.97 on 50 m coupons | Volume scaling to full-scale; system-level reliability |
+| Luo et al. (2022a) | 22% stress reduction with segmentation | Coupled reliability, cascade failure model, lifecycle cost |
 | Popescu & Sun (2018) | Bio-inspired repair concept | Quantified MTTR, phased construction economics |
-| Nishimura & Hashimoto (2015) | Continuous tether dynamics | Segmented comparison, joint compliance effect, 2D Coriolis-coupled model |
+| Aravind (2007) | Canonical taper derivation (pedagogical) | System-level integration with reliability and dynamics |
 
 ### 8.5 Limitations
 
-1. **2D model:** The dynamic model captures in-plane longitudinal and transverse motion but omits out-of-plane dynamics, torsion, and ribbon (finite-width) effects. The transverse gravity-gradient body force (ω² − GM/r³)v is omitted from the FEM stiffness; while this term is physically present, it nearly cancels between destabilizing (below GEO) and stabilizing (above GEO) contributions and introduces numerical difficulties at GEO crossover. The tension-string stiffness alone provides the dominant transverse restoring force.
+1. **2D model:** The dynamic model captures in-plane longitudinal and transverse motion but omits out-of-plane dynamics, torsion, and ribbon (finite-width) effects. The transverse gravity-gradient body force (ω² − GM/r³)v is omitted from the FEM element stiffness; this term provides destabilizing stiffness below GEO and stabilizing stiffness above GEO. While the tension-string stiffness dominates by 5–50× at most altitudes, the omission may contribute to the 19% discrepancy between the 2D transverse result (30.0 h) and the analytical estimate (25.3 h). Future implementations should include the full tidal stiffness matrix to resolve this discrepancy (see §5.3.2 for the detailed assessment).
 2. **Thermal model:** Three discrete zones rather than continuous thermal profile with orbital mechanics.
 3. **Joint failure:** The Weibull extension (§5.2.2) addresses the exponential model's memoryless assumption by sweeping β ∈ {1.0–2.5}, but the actual wear-out exponent for CNT sleeve bonds is unknown. The extreme sensitivity to activation energy Q (~7 orders of magnitude per ±40% perturbation) means that hazard-rate predictions carry substantial uncertainty until Q is experimentally constrained.
 4. **No experimental validation:** Computational feasibility study; experimental next steps in §9.
 5. **Monolithic failure model:** Simplified annual probability rather than detailed degradation model.
-6. **Damping uncertainty:** Rayleigh damping with ζ = 0.01 is a placeholder. Actual tether damping depends on material hysteresis, joint friction, and aerodynamic drag (below ~200 km altitude). The damping sensitivity study (§6.6) shows that resonant transverse displacement varies by 1.8× across the range ζ = 0.001–0.05, making damping characterization a priority for detailed design.
+6. **Damping uncertainty:** Rayleigh damping with ζ = 0.01 is a placeholder. Zhang (2017, arXiv:1705.08697) reports a loss tangent of ~0.045 for dry-spun CNT fibers, corresponding to ζ ≈ 0.023, which falls within the studied range (ζ = 0.001–0.05) and provides preliminary physical grounding for the baseline. However, actual tether damping depends on material hysteresis, joint friction, and aerodynamic drag (below ~200 km altitude), and the damping of a full-scale CNT ribbon under space conditions remains uncharacterized. The damping sensitivity study (§6.6) shows that resonant transverse displacement varies by 1.8× across the range ζ = 0.001–0.05, making damping characterization a priority for detailed design.
 7. **Depot cost model:** Depot specifications and costs are parametric estimates (order-of-magnitude). The analysis demonstrates that the trade space exists and that depot infrastructure is affordable relative to tether cost, but does not constitute a detailed depot design.
 
 ### 8.6 The 72 h Target: An Inspection Problem, Not a Depot Problem
@@ -773,7 +778,7 @@ This reframes the 72 h target from a depot-sizing problem to a sensor/climber te
 
 ### 9.2 Critical Path
 
-The binding constraint is CNT ribbon production at σ_u ≥ 40 GPa on kilometer-per-day lines. Our sensitivity analysis shows the architecture closes (under optimistic tapering) even at σ_u = 30 GPa, which is within reach of current state-of-art (25 GPa ribbons demonstrated by Zhao, 2024).
+The binding constraint is CNT ribbon production at σ_u ≥ 40 GPa on kilometer-per-day lines. Our sensitivity analysis shows the architecture closes (under optimistic tapering) even at σ_u = 30 GPa. Laboratory coupon strengths of 80 GPa (Bai et al., 2018) and continuous kilometer-scale fibers at ~5 GPa specific strength (Niu et al., 2025) bracket the assumed σ_u = 50 GPa baseline, which remains aspirational but within the trajectory of CNT fiber development.
 
 The repair infrastructure analysis (§8.6) identifies continuous structural health monitoring as a second critical technology: periodic climber-based inspection produces a wait-time floor (93 h at v_climber = 150 m/s) that exceeds the 72 h repair target regardless of depot coverage. Embedded acoustic emission or fiber Bragg grating sensors distributed along the tether would eliminate this floor by enabling immediate failure detection, but require development from TRL 3 (laboratory coupon demonstration) to TRL 6 (system-level validation at representative scale). The key challenges are sensor survivability over 100,000 km, data relay architecture, and integration with the CNT ribbon manufacturing process.
 
@@ -781,17 +786,17 @@ The repair infrastructure analysis (§8.6) identifies continuous structural heal
 
 ## 10. Conclusions
 
-This paper presents the first coupled system-level analysis of a modular CNT space-elevator tether, integrating taper geometry, joint reliability, repair logistics, dynamic stability, and lifecycle economics.
+This paper presents a coupled system-level analysis of a modular CNT space-elevator tether, integrating taper geometry, joint reliability, repair logistics, dynamic stability, and lifecycle economics.
 
 **C1 — Coupled feasibility assessment:** The modular architecture is feasible under both optimistic and conservative taper assumptions, though with dramatically different segment counts (N ≈ 83 vs. N ≈ 505 for a full-payload-capacity ribbon at σ_u = 50 GPa).
 
-**C2 — Dual design envelopes:** We resolve a taper-ratio discrepancy in the literature by showing that Edwards & Westling's τ ≈ 1.9 is only recoverable when tapering at σ_u (no safety factor on shape). Both envelopes are presented with full sensitivity analysis across σ_u = 30–70 GPa.
+**C2 — Dual design envelopes:** We resolve a taper-ratio discrepancy in the literature by showing that Edwards & Westling's T_r ≈ 1.9 is only recoverable when tapering at σ_u (no safety factor on shape). Both envelopes are presented with full sensitivity analysis across σ_u = 30–70 GPa.
 
-**C3 — Reliability surface:** Monte Carlo simulation over 12,600 parameter combinations (N × η_j × cadence × p_det × β) shows P_sys > 99.5% in the well-designed regime across all Weibull shape parameters up to β = 2.5. Activation energy Q dominates hazard-rate uncertainty (~7 orders of magnitude per ±40% perturbation), establishing experimental Q characterization as the top priority for reliability prediction.
+**C3 — Reliability surface:** Monte Carlo simulation over 12,600 parameter combinations (N × η_j × cadence × p_det × β) shows P_sys > 99.5% in the well-designed regime across all Weibull shape parameters up to β = 2.5, conditional on Q ≈ 1.1 eV. Activation energy Q dominates hazard-rate uncertainty (~7 orders of magnitude per ±40% perturbation), establishing experimental Q characterization as the top priority for reliability prediction.
 
-**C4 — Minimum viable CNT strength:** Under optimistic tapering, the architecture closes at σ_u = 30 GPa — below current laboratory demonstrations (80 GPa coupon, 25 GPa ribbon). Under conservative tapering, feasibility requires σ_u ≥ 50 GPa for a manageable segment count (N ≈ 505).
+**C4 — Minimum viable CNT strength:** Under optimistic tapering, the architecture closes at σ_u = 30 GPa. Laboratory coupon strengths reach 80 GPa (Bai et al., 2018), but continuous kilometer-scale fibers currently achieve ~5 GPa (Niu et al., 2025); the 50 GPa baseline remains aspirational. Under conservative tapering, feasibility requires σ_u ≥ 50 GPa for a manageable segment count (N ≈ 505).
 
-**C5 — Economic advantage:** Modular outperforms monolithic across all tested cost scenarios, driven primarily by the phased-construction revenue advantage — modular generates revenue at ~60% completion (year ~5 of 7) while monolithic requires 100%.
+**C5 — Economic advantage:** Modular outperforms monolithic across all tested cost scenarios, driven primarily by a phased-construction revenue advantage — modular generates revenue at ~60% completion (year ~5 of 7) while monolithic requires 100%, contingent on a GEO-outward/inward deployment strategy enabling early partial operation.
 
 **C6 — 2D Coriolis-coupled dynamics:** Upgrading from 1D to a 2D rotating-frame FEM reveals that: (i) the lowest-frequency mode is transverse, not longitudinal (T₁_trans = 30.0 h, shifting to 34.8 h with Coriolis — a 16% effect invisible to 1D models); (ii) a single climber induces 136 km peak transverse displacement via Coriolis forcing; (iii) multi-climber resonance at 35 h separation amplifies transverse displacement to 489 km; and (iv) the tether-base tension perturbation of 67% is consistent with the taper design (A_base sized to the climber's surface weight).
 
@@ -806,14 +811,19 @@ Together, these results show that the space-elevator challenge can be reframed f
 ## References
 
 1. Edwards, B.C. & Westling, E.A. (2003). *The Space Elevator: A Revolutionary Earth-to-Space Transportation System.* NIAC Phase II Final Report.
-2. Luo, S. et al. (2022). Segmented tether optimization for space elevator structures. *Acta Astronautica*, 195, 12–24.
-3. Wright, D., Patel, R. & Liddle, J. (2023). Joint efficiency characterization of nanobonded CNT sleeve couplers. *Composites Part B*, 264, 110912.
-4. Popescu, M. & Sun, C. (2018). Bio-inspired self-repair architecture for space tether systems. *AIAA Journal*, 56(8), 3240–3251.
-5. Nishimura, T. & Hashimoto, H. (2015). Dynamic analysis of a continuous space elevator tether. *Journal of Spacecraft and Rockets*, 52(4), 1123–1134.
-6. Peters, R. (2009). Analytical taper solutions for space elevator cables. *JBIS*, 62, 210–218.
-7. Bai, Y. et al. (2018). Carbon nanotube bundles with tensile strength over 80 GPa. *Nature Nanotechnology*, 13, 589–595.
-8. Pearson, J. (1975). The orbital tower: A spacecraft launcher using the Earth's rotational energy. *Acta Astronautica*, 2(9–10), 785–799.
-9. Zhao, Q. et al. (2024). Kilometer-scale CNT ribbons at 25 GPa tensile strength. *Advanced Materials*, 36(2), 2308456.
+2. Luo, S., Cui, N., Wang, X., Fan, Y. & Shi, R. (2022a). Model and Optimization of the Tether for a Segmented Space Elevator. *Aerospace*, 9(5), 278. https://doi.org/10.3390/aerospace9050278
+3. Luo, S. et al. (2022b). The Stability Analysis of a Tether for a Segmented Space Elevator. *Aerospace*, 9(7), 376. https://doi.org/10.3390/aerospace9070376
+4. Popescu, D.M. & Sun, S.X. (2018). Building the Space Elevator: Lessons from Biological Design. arXiv:1804.06453.
+5. Aravind, P.K. (2007). The physics of the space elevator. *Am. J. Phys.*, 75(2), 125–130. https://doi.org/10.1119/1.2404957
+6. Bai, Y. et al. (2018). Carbon nanotube bundles with tensile strength over 80 GPa. *Nature Nanotechnology*, 13, 589–595. https://doi.org/10.1038/s41565-018-0141-z
+7. Pearson, J. (1975). The orbital tower: A spacecraft launcher using the Earth's rotational energy. *Acta Astronautica*, 2(9–10), 785–799.
+8. Niu, Y. et al. (2025). Continuous carbon nanotube fiber with extremely high average specific strength of 4.1 N·tex⁻¹. *Nano Research*. https://doi.org/10.26599/NR.2025.94907584
+9. Cohen, S.S. & Misra, A.K. (2007). The effect of climber transit on the space elevator dynamics. *Acta Astronautica*, 64(5-6), 538–553.
+10. Penoyre, Z. & Sandford, E. (2019). The Spaceline: a practical space elevator alternative achievable with current technology. arXiv:1908.09339.
+11. Pugno, N.M. (2006). On the strength of the carbon nanotube-based space elevator cable. *J. Phys.: Condens. Matter*, 18, S1971–S1990.
+12. Bertalan, Z., Shekhawat, A., Sethna, J.P. & Zapperi, S. (2014). Fracture strength: extreme value statistics and the Weibull distribution. arXiv:1404.04584.
+13. Zhang, X. (2017). Interfacial Mechanical Behaviors in Carbon Nanotube Assemblies. arXiv:1705.08697.
+14. Gassend, B. (2024). Exponential Tethers for Accelerated Space Elevator Deployment. arXiv:2412.17198.
 
 ---
 
@@ -824,7 +834,7 @@ Together, these results show that the space-elevator challenge can be reframed f
 | Figure | File | Description |
 |--------|------|-------------|
 | Fig. 1 | `fig_taper_validation.pdf` | Continuous vs. stepped taper profile A(r) and T(r) |
-| Fig. 2 | `fig_design_envelope_comparison.pdf` | Dual design envelope: τ, N, M_total, m_j_max at σ_u vs σ_allow |
+| Fig. 2 | `fig_design_envelope_comparison.pdf` | Dual design envelope: T_r, N, M_total, m_j_max at σ_u vs σ_allow |
 | Fig. 3 | `fig_sigma_sensitivity.pdf` | Material sensitivity: taper ratio and mass vs. σ_u |
 | Fig. 4 | `fig_reliability_merged.pdf` | (a) P_sys(N, η_j) heatmap at β=1.0; (b) P_sys vs. β at four design points |
 | Fig. 5 | `fig_beta_threshold.pdf` | Minimum η_j for P_sys ≥ 0.995 vs. Weibull β (N=83) |

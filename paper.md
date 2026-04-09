@@ -76,13 +76,13 @@ No published study has quantified joint reliability and load-path continuity in 
 
 ### 2.1 Tether Architecture
 
-Early feasibility studies assumed a monolithic, exponentially tapered ribbon (Edwards & Westling, 2003). Recent work shows that subdividing the tether into repairable modules can relax peak-stress requirements and simplify maintenance. Luo et al. (2022a) quantified a 22% stress reduction with 10–100 km segments joined by sleeve couplers, and subsequently analyzed the stability of such segmented configurations (Luo et al., 2022b). Popescu and Sun (2018) introduced a bio-inspired bundle architecture with active self-repair. The IAA Study Group 3.10 recommended a one-meter-wide woven ribbon with in-plane redundancy. An alternative architecture — the "Spaceline" anchored to the Moon rather than supported centrifugally — sidesteps the taper problem entirely and is feasible with existing materials (Penoyre & Sandford, 2019), though it cannot provide direct surface-to-orbit access.
+Early feasibility studies assumed a monolithic, exponentially tapered ribbon (Edwards & Westling, 2003). Recent work shows that subdividing the tether into repairable modules can relax peak-stress requirements and simplify maintenance. Luo et al. (2022a) quantified a 22% stress reduction with 10–100 km segments joined by sleeve couplers, and subsequently analyzed the stability of such segmented configurations (Luo et al., 2022b). Popescu and Sun (2018) introduced a bio-inspired bundle architecture with active self-repair. The IAA Study Group 3.10 recommended a one-meter-wide woven ribbon with in-plane redundancy (Swan et al., 2013). An alternative architecture — the "Spaceline" anchored to the Moon rather than supported centrifugally — sidesteps the taper problem entirely and is feasible with existing materials (Penoyre & Sandford, 2019), though it cannot provide direct surface-to-orbit access.
 
 **Gap:** No study couples joint reliability with segment geometry, repair logistics, and lifecycle economics at system level.
 
 ### 2.2 CNT Mechanics
 
-Carbon nanotubes remain the reference material: laboratory coupon strengths of 80 GPa (Bai et al., 2018) and continuous kilometer-scale fibers at ~5 GPa specific strength (Niu et al., 2025) bracket the assumed σ_u = 50 GPa baseline used in this study. This baseline is aspirational — it has not been demonstrated at ribbon scale — but represents a plausible near-term target given the trajectory of CNT fiber development. The gap between laboratory and 100,000 km production has not been addressed with engineering knock-down factors.
+Carbon nanotubes remain the reference material: laboratory coupon strengths of 80 GPa (Bai et al., 2018) and continuous kilometer-scale fibers at ~5 GPa specific strength (Niu et al., 2025) bracket the assumed σ_u = 50 GPa baseline used in this study. This baseline is aspirational — it has not been demonstrated at ribbon scale — but represents a plausible near-term target given the trajectory of CNT fiber development (Mikhalchan & Vilatela, 2020). The gap between laboratory and 100,000 km production has not been addressed with engineering knock-down factors.
 
 ### 2.3 Tether Dynamics
 
@@ -247,7 +247,7 @@ Joint failures are dominated by diffusion-assisted void growth in solder necks. 
 λ_j(T) = λ_0_pre × exp(−Q / (k_B × T)) × (0.95 / η_j)⁴
 ```
 
-where Q = 1.1 eV is an assumed activation energy representative of diffusion-controlled void growth in metallic nano-solder systems (typical range 0.7–1.5 eV for Sn-Ag-Cu solders; see Zhao et al., 2012, *J. Alloys Compd.*, 520, 11–19). The stress-hazard coupling exponent 4 is adopted from the inverse power law commonly used for fatigue life of structural joints (analogous to Paris law with m = 4 for composite laminates; Bathias & Paris, 2005). This value is assumed in the absence of CNT-specific stress-life data; the actual exponent could range from 2 (ductile metals) to 10+ (ceramics). Since the cascade model's primary conclusion — that two adjacent unrepaired failures trigger system loss — is binary and insensitive to the exact exponent, this assumption affects the rate of cascade initiation but not the cascade threshold.
+where Q = 1.1 eV is an assumed activation energy representative of diffusion-controlled void growth in metallic nano-solder systems (typical range 0.7–1.5 eV for Sn-Ag-Cu solders; Chen et al., 2010, *J. Mater. Res.*, 25(9), 1847–1853, report Q = 1.06 eV for SnAg/Cu, directly supporting this assumption). The stress-hazard coupling exponent 4 is adopted from the inverse power law commonly used for fatigue life of structural joints (analogous to Paris law with m = 4 for composite laminates; Bathias & Paris, 2005). This value is assumed in the absence of CNT-specific stress-life data; the actual exponent could range from 2 (ductile metals) to 10+ (ceramics). Since the cascade model's primary conclusion — that two adjacent unrepaired failures trigger system loss — is binary and insensitive to the exact exponent, this assumption affects the rate of cascade initiation but not the cascade threshold.
 
 Integrating the orbital thermal profile gives an assumed mission-averaged λ̄ = 1.2 × 10⁻⁸ h⁻¹ at coupon scale, chosen to represent a plausible near-term nanobonded CNT joint.
 
@@ -257,7 +257,7 @@ Integrating the orbital thermal profile gives an assumed mission-averaged λ̄ =
 λ_fullscale = λ_coupon × (V_sleeve / V_coupon)^(1/m) = 1.2e-8 × 6000^(1/6) ≈ 5.2 × 10⁻⁸ h⁻¹
 ```
 
-This hazard-rate scaling is a common engineering approximation; rigorously, Weibull weakest-link theory applies to strength distributions rather than directly to time-dependent hazard rates. Additionally, Bertalan et al. (2014) demonstrate that Weibull scaling becomes unstable for quasi-brittle materials with modulus m < 30, which includes CNT assemblies. The assumed m = 6 is a design assumption, not an experimentally validated value for CNT sleeve bonds; Pugno & Ruoff (2006) report m ≈ 2.7 for CNT bundles. To bound this uncertainty, we swept the volume modulus across m ∈ {2.7, 4, 6, 8, 10} (Fig. S19). At m = 2.7 (pessimistic), the volume scaling factor increases from 4.3× to 25.1× and λ_full rises from 5.1 × 10⁻⁸ to 3.0 × 10⁻⁷ h⁻¹. Despite this 6× increase in hazard rate, the system maintains P_sys ≥ 0.995 at η_j ≥ 0.80 for N = 83 — demonstrating that the modular architecture is robust to pessimistic volume scaling assumptions. The design margin established by the η_j and p_det requirements absorbs even an order-of-magnitude increase in the effective hazard rate.
+This hazard-rate scaling is a common engineering approximation; rigorously, Weibull weakest-link theory applies to strength distributions rather than directly to time-dependent hazard rates. Additionally, Bertalan et al. (2014) demonstrate that Weibull scaling becomes unstable for quasi-brittle materials with modulus m < 30, which includes CNT assemblies (see also Carpinteri & Pugno, 2008, on size-effect scaling in nano-structured materials). The assumed m = 6 is a design assumption, not an experimentally validated value for CNT sleeve bonds; Pugno & Ruoff (2006) report m ≈ 2.7 for CNT bundles. To bound this uncertainty, we swept the volume modulus across m ∈ {2.7, 4, 6, 8, 10} (Fig. S19). At m = 2.7 (pessimistic), the volume scaling factor increases from 4.3× to 25.1× and λ_full rises from 5.1 × 10⁻⁸ to 3.0 × 10⁻⁷ h⁻¹. Despite this 6× increase in hazard rate, the system maintains P_sys ≥ 0.995 at η_j ≥ 0.80 for N = 83 — demonstrating that the modular architecture is robust to pessimistic volume scaling assumptions. The design margin established by the η_j and p_det requirements absorbs even an order-of-magnitude increase in the effective hazard rate.
 
 The pre-exponential λ_0_pre is derived by calibrating against this mission-averaged rate weighted by the number of joints in each thermal zone (not by tether length).
 
@@ -737,7 +737,7 @@ The reliability cliff at p_det < 0.70 provides a clear technology development ta
 
 The cascade model reveals a non-obvious result: adding more segments (higher N) can decrease system reliability even though each segment is lighter. With N = 500 (conservative taper), there are 499 joints, each a potential failure point. While individual joint failure probability remains low, the combinatorial probability of two adjacent failures (triggering cascade) grows quadratically with N.
 
-This creates an optimal N that balances mass per segment against cascade risk — a trade-off unique to modular architecture and absent from monolithic designs.
+This creates an optimal N that balances mass per segment against cascade risk — a trade-off unique to modular architecture and absent from monolithic designs. The fiber bundle model (Pradhan, Hansen & Chakrabarti, 2009) provides an analytical framework for such load-redistribution cascades, though applied here in a discrete-segment rather than continuous-fiber context.
 
 ### 8.4 Comparison to Prior Work
 
@@ -835,14 +835,21 @@ Together, these results show that the space-elevator challenge can be reframed f
 4. Popescu, D.M. & Sun, S.X. (2018). Building the Space Elevator: Lessons from Biological Design. arXiv:1804.06453.
 5. Aravind, P.K. (2007). The physics of the space elevator. *Am. J. Phys.*, 75(2), 125–130. https://doi.org/10.1119/1.2404957
 6. Bai, Y. et al. (2018). Carbon nanotube bundles with tensile strength over 80 GPa. *Nature Nanotechnology*, 13, 589–595. https://doi.org/10.1038/s41565-018-0141-z
-7. Pearson, J. (1975). The orbital tower: A spacecraft launcher using the Earth's rotational energy. *Acta Astronautica*, 2(9–10), 785–799.
+7. Pearson, J. (1975). The orbital tower: A spacecraft launcher using the Earth's rotational energy. *Acta Astronautica*, 2(9–10), 785–799. https://doi.org/10.1016/0094-5765(75)90021-1
 8. Niu, Y. et al. (2025). Continuous carbon nanotube fiber with extremely high average specific strength of 4.1 N·tex⁻¹. *Nano Research*. https://doi.org/10.26599/NR.2025.94907584
-9. Cohen, S.S. & Misra, A.K. (2007). The effect of climber transit on the space elevator dynamics. *Acta Astronautica*, 64(5-6), 538–553.
+9. Cohen, S.S. & Misra, A.K. (2007). The effect of climber transit on the space elevator dynamics. *Acta Astronautica*, 64(5-6), 538–553. https://doi.org/10.1016/j.actaastro.2008.09.039
 10. Penoyre, Z. & Sandford, E. (2019). The Spaceline: a practical space elevator alternative achievable with current technology. arXiv:1908.09339.
-11. Pugno, N.M. (2006). On the strength of the carbon nanotube-based space elevator cable. *J. Phys.: Condens. Matter*, 18, S1971–S1990.
+11. Pugno, N.M. (2006). On the strength of the carbon nanotube-based space elevator cable. *J. Phys.: Condens. Matter*, 18, S1971–S1990. https://doi.org/10.1088/0953-8984/18/33/S14
 12. Bertalan, Z., Shekhawat, A., Sethna, J.P. & Zapperi, S. (2014). Fracture strength: extreme value statistics and the Weibull distribution. arXiv:1404.04584.
 13. Zhang, X. (2017). Interfacial Mechanical Behaviors in Carbon Nanotube Assemblies. arXiv:1705.08697.
 14. Gassend, B. (2024). Exponential Tethers for Accelerated Space Elevator Deployment. arXiv:2412.17198.
+15. Chen, K. et al. (2010). Activation energy for electromigration in SnAg/Cu solder joints. *J. Mater. Res.*, 25(9), 1847–1853. https://doi.org/10.1557/JMR.2010.0230
+16. Bathias, C. & Paris, P.C. (2005). *Gigacycle Fatigue in Mechanical Practice.* Marcel Dekker, New York.
+17. Pugno, N.M. & Ruoff, R.S. (2006). Nanoscale Weibull statistics. *J. Appl. Phys.*, 99(2), 024301. https://doi.org/10.1063/1.2158491
+18. Swan, P. et al. (2013). *Space Elevator Concept of Operations.* IAA Study Group 3.10 Final Report. International Academy of Astronautics.
+19. Mikhalchan, A. & Vilatela, J.J. (2020). A perspective on high-performance CNT fibres for structural composites. *Carbon*, 163, 195–227. https://doi.org/10.1016/j.carbon.2020.02.094
+20. Carpinteri, A. & Pugno, N.M. (2008). Mechanics of hierarchical materials. *International Journal of Fracture*, 150(1–2), 221–226. https://doi.org/10.1007/s10704-008-9220-z
+21. Pradhan, S., Hansen, A. & Chakrabarti, B.K. (2009). Failure processes in elastic fiber bundles. *Reviews of Modern Physics*, 82(1), 499–555. https://doi.org/10.1103/RevModPhys.82.499
 
 ---
 
@@ -871,7 +878,7 @@ Together, these results show that the space-elevator challenge can be reframed f
 | Fig. 17 | `fig_psys_vs_Q.pdf` | P_sys(N, η_j) heatmap at Q = {0.8, 1.1, 1.4} eV (3-panel) |
 | Fig. 18 | `fig_Q_reliability_envelope.pdf` | P_sys vs η_j showing Q uncertainty band (N=83, β=1.5) |
 
-### Supplementary Material (20 figures)
+### Supplementary Material (19 figures)
 
 | Figure | File | Description |
 |--------|------|-------------|

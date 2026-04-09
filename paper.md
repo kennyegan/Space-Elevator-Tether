@@ -15,11 +15,11 @@ Department of Mechanical and Aerospace Engineering, Wentworth Institute of Techn
 
 ## Abstract
 
-Every published space-elevator architecture presumes a defect-free monolithic carbon-nanotube ribbon spanning 100,000 km. This paper advances a modular alternative — variable-length CNT segments joined by nanobonded sleeve couplers — and presents a coupled system-level analysis integrating taper geometry, joint reliability, repair logistics, dynamic stability, and lifecycle economics.
+Every published space-elevator architecture presumes a defect-free monolithic carbon-nanotube ribbon spanning 100,000 km. This paper presents a modular alternative — variable-length CNT segments joined by nanobonded sleeve couplers — via a coupled analysis integrating taper geometry, joint reliability, repair logistics, dynamic stability, and lifecycle economics.
 
-We resolve a taper-ratio discrepancy in the literature: all published values (T_r ≈ 1.6 to T_r ≈ 37) are recoverable from a single integral once the stress basis, material density, and base-area sizing are specified. Monte Carlo simulation (12,600 parameter combinations × 10⁵ trajectories) over joint efficiency η_j, inspection cadence, detection probability, and Weibull shape β shows that the modular architecture achieves >99.5% ten-year survival probability across the well-designed regime (η_j ≥ 0.88, p_det ≥ 0.90) **conditional on the assumed activation energy Q = 1.1 eV**; the extreme sensitivity of hazard rate to Q (~7 orders of magnitude per ±40% perturbation) makes experimental Q characterization the single most important priority for validating these predictions.
+We resolve a taper-ratio discrepancy in the literature: all published values (T_r ≈ 1.6 to T_r ≈ 37) are recoverable from a single integral once the stress basis, material density, and base-area sizing are specified. Monte Carlo simulation (12,600 combinations × 10⁵ trajectories) shows the modular architecture achieves >99.5% ten-year survival probability across the well-designed regime (η_j ≥ 0.88, p_det ≥ 0.90) **conditional on the assumed activation energy Q ≈ 1.1 eV**. A Q-sensitivity sweep reveals that the hazard rate spans 10 orders of magnitude across Q ∈ {0.8, 1.1, 1.4} eV: at Q = 0.8 eV all configurations fail catastrophically (P_sys = 0), while at Q = 1.4 eV no failures occur. Experimental characterization of Q for CNT sleeve bonds is therefore the single most important priority for validating these predictions.
 
-A 2D Coriolis-coupled finite element model reveals a transverse fundamental period of 34.8 h and a multi-climber resonance separation rule at ~35 h. The Edwards & Westling 72 h repair target is structurally constrained by inspection cadence, not depot coverage. Lifecycle NPV comparison shows modular consistently outperforms monolithic, driven by a phased-construction revenue advantage contingent on a GEO-outward/inward deployment strategy enabling partial operation at ~60% completion.
+A 2D Coriolis-coupled finite element model reveals a transverse fundamental period of 34.8 h and a multi-climber resonance separation rule at ~35 h. The Edwards & Westling 72 h repair target is structurally constrained by inspection cadence, not depot coverage. Lifecycle NPV shows modular consistently outperforms monolithic, driven by a phased-construction revenue advantage contingent on a deployment strategy enabling partial operation at ~60% completion.
 
 The modular tether reframes the space-elevator challenge from materials perfection to systems engineering and maintainability.
 
@@ -257,7 +257,7 @@ Integrating the orbital thermal profile gives an assumed mission-averaged λ̄ =
 λ_fullscale = λ_coupon × (V_sleeve / V_coupon)^(1/m) = 1.2e-8 × 6000^(1/6) ≈ 5.2 × 10⁻⁸ h⁻¹
 ```
 
-This hazard-rate scaling is a common engineering approximation; rigorously, Weibull weakest-link theory applies to strength distributions rather than directly to time-dependent hazard rates. Additionally, Bertalan et al. (2014) demonstrate that Weibull scaling becomes unstable for quasi-brittle materials with modulus m < 30, which includes CNT assemblies. The assumed m = 6 is a design assumption, not an experimentally validated value for CNT sleeve bonds; Pugno & Ruoff (2006) report m ≈ 2.7 for CNT bundles, which would increase the volume scaling factor from 4.3× to ~12×. This uncertainty is partially captured by the η_j sweep, which implicitly varies the effective hazard rate across a wide range.
+This hazard-rate scaling is a common engineering approximation; rigorously, Weibull weakest-link theory applies to strength distributions rather than directly to time-dependent hazard rates. Additionally, Bertalan et al. (2014) demonstrate that Weibull scaling becomes unstable for quasi-brittle materials with modulus m < 30, which includes CNT assemblies. The assumed m = 6 is a design assumption, not an experimentally validated value for CNT sleeve bonds; Pugno & Ruoff (2006) report m ≈ 2.7 for CNT bundles. To bound this uncertainty, we swept the volume modulus across m ∈ {2.7, 4, 6, 8, 10} (Fig. S19). At m = 2.7 (pessimistic), the volume scaling factor increases from 4.3× to 25.1× and λ_full rises from 5.1 × 10⁻⁸ to 3.0 × 10⁻⁷ h⁻¹. Despite this 6× increase in hazard rate, the system maintains P_sys ≥ 0.995 at η_j ≥ 0.80 for N = 83 — demonstrating that the modular architecture is robust to pessimistic volume scaling assumptions. The design margin established by the η_j and p_det requirements absorbs even an order-of-magnitude increase in the effective hazard rate.
 
 The pre-exponential λ_0_pre is derived by calibrating against this mission-averaged rate weighted by the number of joints in each thermal zone (not by tether length).
 
@@ -362,7 +362,7 @@ To capture transverse dynamics and Coriolis coupling, we upgrade to a 2D model i
 - **Tension** (transverse): T(r)/L tensioned-string stiffness, where T(r) = σ_design × A(r) varies by a factor of T_r ≈ 12.4 along the tether
 - **Gravity-gradient** (longitudinal): position-dependent restoring force (ω² + 2GM/r³) from tidal stretching, evaluated via 2-point Gauss quadrature
 
-The transverse gravity-gradient body force (ω² − GM/r³)v is omitted from the FEM element stiffness. This term provides a destabilizing (negative stiffness) contribution below GEO and a stabilizing (positive stiffness) contribution above GEO. For the present taper profile, a comparison of the gravity-gradient stiffness magnitude |(ω² − GM/r³) × m_element| against the tension-string stiffness T(r)/L_element at representative altitudes shows that the tension-string term dominates by a factor of 5–50× throughout the tether, with the exception of a narrow region near GEO where both terms approach zero. The net effect of including this term would be a modest reduction in T₁_trans (stiffer system), potentially explaining part of the 19% discrepancy between the 2D result (30.0 h) and the analytical estimate (25.3 h). We acknowledge this as a limitation: future implementations should include the full tidal stiffness matrix. The Coriolis coupling results (16% frequency shift) are unaffected by this omission since the gyroscopic matrix G is independent of the transverse stiffness.
+The transverse gravity-gradient body force (ω² − GM/r³)v is omitted from the FEM element stiffness. This term provides a destabilizing (negative stiffness) contribution below GEO and a stabilizing (positive stiffness) contribution above GEO. To assess the impact of this omission, we computed the ratio of tension-string stiffness T(r)/L_element to gravity-gradient stiffness |ρA(r)L_element(ω² − GM/r³)| at all 500 element midpoints (Fig. S18). Outside a ±1,000 km band centered on GEO (where both terms approach zero by definition), the tension-string stiffness exceeds the gravity-gradient contribution by a factor of at least 3,180×, confirming that the omitted term is negligible for the transverse modal analysis. The 19% discrepancy between the 2D transverse period (30.0 h) and the analytical uniform-string estimate (25.3 h) is therefore attributable to the non-uniform taper (mass concentration near GEO lowering the effective frequency), not to the missing gravity-gradient stiffness. The Coriolis coupling results (16% frequency shift) are unaffected by this omission since the gyroscopic matrix G is independent of the transverse stiffness.
 
 **Coriolis coupling:** The skew-symmetric gyroscopic matrix G couples longitudinal velocity (u̇) into the transverse equation and vice versa. This is the key upgrade — without G, longitudinal and transverse modes are independent; with G, they interact, shifting frequencies and enabling energy transfer between DOFs.
 
@@ -538,10 +538,23 @@ The one-at-a-time perturbation analysis identifies activation energy Q as the ov
 
 This extreme Q-sensitivity has a practical implication: experimental determination of the activation energy for void growth in CNT sleeve bonds is the single most important characterization priority for reducing reliability prediction uncertainty.
 
-**Conditional nature of reliability predictions.** The P_sys > 99.5% result in the well-designed regime is conditional on Q ≈ 1.1 eV. At Q = 0.66 eV (−40%), the full-scale hazard rate increases by approximately 10⁷, which would push the system into the degraded regime regardless of η_j or p_det. Conversely, at Q = 1.54 eV (+40%), the hazard rate decreases by ~10⁷ and essentially no failures occur within 10 years. The reliability surfaces presented here should therefore be interpreted as **design-conditional** — they show what is achievable if the assumed failure physics holds — rather than as unconditional predictions. Future work should present P_sys maps at Q = {0.8, 1.1, 1.4} eV to bound this uncertainty explicitly.
+**Conditional nature of reliability predictions.** The P_sys > 99.5% result in the well-designed regime is conditional on Q ≈ 1.1 eV. At Q = 0.66 eV (−40%), the full-scale hazard rate increases by approximately 10⁷, which would push the system into the degraded regime regardless of η_j or p_det. Conversely, at Q = 1.54 eV (+40%), the hazard rate decreases by ~10⁷ and essentially no failures occur within 10 years. The reliability surfaces presented here should therefore be interpreted as **design-conditional** — they show what is achievable if the assumed failure physics holds — rather than as unconditional predictions. The following subsection presents a targeted Q-sensitivity sweep at Q = {0.8, 1.1, 1.4} eV that bounds this uncertainty explicitly.
 
 > **Figure:** `paper/figures/fig_hazard_tornado.pdf` — Hazard rate sensitivity tornado diagram
 > **Figure (supplementary):** `paper/figures/fig_hazard_spider.pdf` — Hazard rate spider plot
+
+#### Q-Sensitivity: Conditional Nature of Reliability Predictions
+
+To quantify the conditional nature of all reliability predictions, we re-ran the Monte Carlo sweep at Q = {0.8, 1.1, 1.4} eV across a reduced parameter grid (N ∈ {12, 24, 83, 200, 500}, η_j ∈ {0.70–0.97}, β ∈ {1.0, 1.5, 2.5}, 270 combinations × 10⁵ trajectories), holding λ_0_pre fixed at the baseline calibration to isolate the physical sensitivity.
+
+The results (Fig. 17, Fig. 18) are stark: at Q = 0.8 eV, the full-scale hazard rate rises to λ_full ≈ 6 × 10⁻³ h⁻¹ — implying a mean time to individual joint failure of ~170 hours, shorter than a single inspection interval. P_sys = 0 across every tested combination of N, η_j, and β. At Q = 1.4 eV, the hazard rate drops to λ_full ≈ 5 × 10⁻¹³ h⁻¹, giving a per-joint 10-year failure probability of ~4 × 10⁻⁹ — effectively zero. P_sys = 1.000 everywhere.
+
+The entire well-designed regime identified in §6.4 exists within a narrow activation-energy window centered on Q ≈ 1.1 eV. A shift of just 0.3 eV in either direction collapses or trivializes the reliability question. This extreme sensitivity is an inherent property of the Arrhenius exponential and cannot be designed around — it can only be resolved by experimental measurement of Q for CNT nano-solder void growth kinetics. We recommend that all reliability predictions in this paper be read as conditional on Q ≈ 1.0–1.2 eV until experimental data constrains this parameter.
+
+The Q = 1.1 eV results were validated against the existing baseline data (§6.4 Exponential Baseline), with maximum |ΔP_sys| = 0.00022 across all shared grid points — well within Monte Carlo noise at 10⁵ trajectories.
+
+> **Figure:** `paper/figures/fig_psys_vs_Q.pdf` — P_sys(N, η_j) heatmap at Q = {0.8, 1.1, 1.4} eV (3-panel)
+> **Figure:** `paper/figures/fig_Q_reliability_envelope.pdf` — P_sys vs η_j at N=83, β=1.5 showing Q uncertainty band
 
 ### 6.5 MTTR Distribution
 
@@ -607,7 +620,7 @@ The 2D model reveals that the lowest-frequency mode is **transverse** (lateral s
 | T₂ transverse [h] | 10.2 | 10.5 | +2.5% |
 | T₁ longitudinal [h] | 7.65 | 7.12 | −7% |
 
-The Coriolis coupling shifts the transverse fundamental period by 16% — a significant effect that cannot be captured by any 1D model. The 30.0 h no-Coriolis transverse period is 19% longer than the 25.3 h analytical pendulum period; this difference arises partly because the non-uniform taper concentrates mass near GEO (where the cross-section peaks), which lowers the effective mode frequency compared to the uniform-string analytical formula, and partly because the transverse gravity-gradient stiffness term is omitted from the FEM (see §5.3.2), the inclusion of which would reduce this discrepancy.
+The Coriolis coupling shifts the transverse fundamental period by 16% — a significant effect that cannot be captured by any 1D model. The 30.0 h no-Coriolis transverse period is 19% longer than the 25.3 h analytical pendulum period; this difference arises because the non-uniform taper concentrates mass near GEO (where the cross-section peaks), which lowers the effective mode frequency compared to the uniform-string analytical formula. The omitted transverse gravity-gradient stiffness is negligible (tension-string stiffness exceeds it by >3,000× outside GEO ± 1,000 km; see §5.3.2).
 
 The first longitudinal elastic mode at 7.65 h is distinct from the 25.3 h analytical pendulum period. The 25.3 h result comes from c = √(σ/ρ), which represents the gravity-gradient wave speed where geometric stiffness balances inertia. The 7.65 h mode arises from the full elastic stiffness EA/L, which is ~11× stiffer (E/σ = 280/25 = 11.2). These are physically different oscillation mechanisms: the pendulum mode is a whole-tether libration driven by the gravity gradient; the elastic mode is a compression wave.
 
@@ -737,7 +750,7 @@ This creates an optimal N that balances mass per segment against cascade risk �
 
 ### 8.5 Limitations
 
-1. **2D model:** The dynamic model captures in-plane longitudinal and transverse motion but omits out-of-plane dynamics, torsion, and ribbon (finite-width) effects. The transverse gravity-gradient body force (ω² − GM/r³)v is omitted from the FEM element stiffness; this term provides destabilizing stiffness below GEO and stabilizing stiffness above GEO. While the tension-string stiffness dominates by 5–50× at most altitudes, the omission may contribute to the 19% discrepancy between the 2D transverse result (30.0 h) and the analytical estimate (25.3 h). Future implementations should include the full tidal stiffness matrix to resolve this discrepancy (see §5.3.2 for the detailed assessment).
+1. **2D model:** The dynamic model captures in-plane longitudinal and transverse motion but omits out-of-plane dynamics, torsion, and ribbon (finite-width) effects. The transverse gravity-gradient body force is omitted; a post-hoc comparison shows the tension-string stiffness exceeds it by >3,000× outside the GEO vicinity, confirming the omission is justified (see §5.3.2). The 19% discrepancy between the 2D transverse result (30.0 h) and the analytical estimate (25.3 h) is attributable to the non-uniform taper mass distribution, not the missing gravity-gradient stiffness.
 2. **Thermal model:** Three discrete zones rather than continuous thermal profile with orbital mechanics.
 3. **Joint failure:** The Weibull extension (§5.2.2) addresses the exponential model's memoryless assumption by sweeping β ∈ {1.0–2.5}, but the actual wear-out exponent for CNT sleeve bonds is unknown. The extreme sensitivity to activation energy Q (~7 orders of magnitude per ±40% perturbation) means that hazard-rate predictions carry substantial uncertainty until Q is experimentally constrained.
 4. **No experimental validation:** Computational feasibility study; experimental next steps in §9.
@@ -745,7 +758,13 @@ This creates an optimal N that balances mass per segment against cascade risk �
 6. **Damping uncertainty:** Rayleigh damping with ζ = 0.01 is a placeholder. Zhang (2017, arXiv:1705.08697) reports a loss tangent of ~0.045 for dry-spun CNT fibers, corresponding to ζ ≈ 0.023, which falls within the studied range (ζ = 0.001–0.05) and provides preliminary physical grounding for the baseline. However, actual tether damping depends on material hysteresis, joint friction, and aerodynamic drag (below ~200 km altitude), and the damping of a full-scale CNT ribbon under space conditions remains uncharacterized. The damping sensitivity study (§6.6) shows that resonant transverse displacement varies by 1.8× across the range ζ = 0.001–0.05, making damping characterization a priority for detailed design.
 7. **Depot cost model:** Depot specifications and costs are parametric estimates (order-of-magnitude). The analysis demonstrates that the trade space exists and that depot infrastructure is affordable relative to tether cost, but does not constitute a detailed depot design.
 
-### 8.6 The 72 h Target: An Inspection Problem, Not a Depot Problem
+### 8.6 The Q Problem
+
+The Q-sensitivity results (§6.4, Q-Sensitivity subsection) represent the most important finding of this paper regarding what remains unknown. The Arrhenius model's exponential dependence on Q/k_BT means that even modest uncertainty in activation energy (±0.3 eV, typical for systems where Q has not been directly measured) spans the entire range from guaranteed failure to guaranteed success. No amount of engineering optimization — joint quality, inspection cadence, detection probability, depot infrastructure — can compensate for the wrong Q. This reframes the space-elevator joint reliability problem from a systems engineering challenge to a materials characterization challenge: the first experimental measurement of void-growth activation energy in CNT nano-solder bonds will determine whether the modular architecture is viable or not.
+
+The 10-orders-of-magnitude swing in hazard rate across Q ∈ {0.8, 1.1, 1.4} eV is not a limitation of the model — it is a physical reality of Arrhenius kinetics at the relevant temperatures (250–300 K). At these temperatures, k_BT ≈ 0.022–0.026 eV, so the Boltzmann factor exp(−Q/k_BT) changes by a factor of ~10⁵ per 0.3 eV shift in Q. This sensitivity is inherent and irreducible. The practical consequence is that all reliability predictions in this paper — including the well-designed regime boundaries, the η_j thresholds, and the MTTR targets — are conditional on Q falling within approximately 1.0–1.2 eV. Should experimental measurement reveal Q < 0.9 eV, the entire modular architecture as designed here would require either fundamentally different joint materials or a different failure mechanism model.
+
+### 8.7 The 72 h Target: An Inspection Problem, Not a Depot Problem
 
 The Edwards & Westling (2003) 72 h repair target has been widely cited as a design requirement for space-elevator maintenance. Our analysis reveals that this target is structurally constrained by a factor that depot infrastructure cannot address: inspection cadence.
 
@@ -792,7 +811,7 @@ This paper presents a coupled system-level analysis of a modular CNT space-eleva
 
 **C2 — Dual design envelopes:** We resolve a taper-ratio discrepancy in the literature by showing that Edwards & Westling's T_r ≈ 1.9 is only recoverable when tapering at σ_u (no safety factor on shape). Both envelopes are presented with full sensitivity analysis across σ_u = 30–70 GPa.
 
-**C3 — Reliability surface:** Monte Carlo simulation over 12,600 parameter combinations (N × η_j × cadence × p_det × β) shows P_sys > 99.5% in the well-designed regime across all Weibull shape parameters up to β = 2.5, conditional on Q ≈ 1.1 eV. Activation energy Q dominates hazard-rate uncertainty (~7 orders of magnitude per ±40% perturbation), establishing experimental Q characterization as the top priority for reliability prediction.
+**C3 — Reliability surface:** Monte Carlo simulation over 12,600 parameter combinations shows P_sys > 99.5% in the well-designed regime conditional on Q ≈ 1.1 eV. A targeted Q-sensitivity sweep at Q = {0.8, 1.1, 1.4} eV reveals that the full-scale hazard rate spans 10 orders of magnitude across this range, with P_sys collapsing to zero at Q = 0.8 eV and saturating at unity at Q = 1.4 eV. Experimental Q characterization is the binding prerequisite for all reliability claims.
 
 **C4 — Minimum viable CNT strength:** Under optimistic tapering, the architecture closes at σ_u = 30 GPa. Laboratory coupon strengths reach 80 GPa (Bai et al., 2018), but continuous kilometer-scale fibers currently achieve ~5 GPa (Niu et al., 2025); the 50 GPa baseline remains aspirational. Under conservative tapering, feasibility requires σ_u ≥ 50 GPa for a manageable segment count (N ≈ 505).
 
@@ -829,7 +848,7 @@ Together, these results show that the space-elevator challenge can be reframed f
 
 ## Figure Index
 
-### Main Text (16 figures)
+### Main Text (18 figures)
 
 | Figure | File | Description |
 |--------|------|-------------|
@@ -849,8 +868,10 @@ Together, these results show that the space-elevator challenge can be reframed f
 | Fig. 14 | `fig_npv_merged.pdf` | Cumulative NPV: monolithic vs. modular with 0/5/10 depots |
 | Fig. 15 | `fig_cost_tornado.pdf` | Cost sensitivity tornado diagram |
 | Fig. 16 | `fig_depot_breakeven.pdf` | Max affordable depots: launch cost vs. discount rate heatmap |
+| Fig. 17 | `fig_psys_vs_Q.pdf` | P_sys(N, η_j) heatmap at Q = {0.8, 1.1, 1.4} eV (3-panel) |
+| Fig. 18 | `fig_Q_reliability_envelope.pdf` | P_sys vs η_j showing Q uncertainty band (N=83, β=1.5) |
 
-### Supplementary Material (17 figures)
+### Supplementary Material (20 figures)
 
 | Figure | File | Description |
 |--------|------|-------------|
@@ -871,6 +892,8 @@ Together, these results show that the space-elevator challenge can be reframed f
 | Fig. S15 | `fig_resonant_vs_offresonant.pdf` | GEO transverse: resonant vs. off-resonant |
 | Fig. S16 | `fig_damping_sensitivity.pdf` | Peak transverse displacement vs. damping ratio |
 | Fig. S17 | `fig_depot_placement_comparison.pdf` | MTTR vs. failure altitude for 3 placement strategies |
+| Fig. S18 | `fig_stiffness_ratio.pdf` | Tension vs. gravity-gradient stiffness comparison (2-panel) |
+| Fig. S19 | `fig_volume_modulus_psys.pdf` | P_sys vs η_j at Weibull volume moduli m ∈ {2.7, 4, 6, 8, 10} |
 
 ---
 
@@ -890,6 +913,12 @@ All simulation data is stored in `data/processed/`:
 - `phase3_repair/npv_with_depots.csv` — NPV with depot infrastructure costs
 - `phase3_repair/breakeven_analysis.csv` — Maximum affordable depot counts per scenario
 - `phase3_repair/depot_configurations.csv` — Depot altitudes for each (n, strategy) pair
+- `psys_Q_sensitivity.npz` — Q-sensitivity P_sys arrays at Q = {0.8, 1.1, 1.4} eV
+- `Q_sensitivity_results.csv` — Q-sensitivity flat results table (270 combinations × 3 Q values)
+- `Q_hazard_rate_table.csv` — Hazard rates by Q value
+- `psys_volume_modulus.npz` — Volume modulus sensitivity P_sys arrays at m ∈ {2.7, 4, 6, 8, 10}
+- `volume_modulus_sensitivity.csv` — Volume modulus flat results table (50 combinations)
+- `phase2_dynamics/stiffness_comparison.csv` — Tension vs. gravity-gradient stiffness at all element midpoints
 
 Simulation scripts are available in the project repository under `simulations/`.
 

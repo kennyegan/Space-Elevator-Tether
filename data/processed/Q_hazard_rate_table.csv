@@ -1,0 +1,4 @@
+Q_eV,lambda_full,p_fail_10yr,comment
+0.8,0.005991080919578033,1.0,System likely fails
+1.1,5.292874929146474e-08,0.004625826194156857,Baseline
+1.4,4.76037768989022e-13,4.170090772692703e-08,Essentially no failures

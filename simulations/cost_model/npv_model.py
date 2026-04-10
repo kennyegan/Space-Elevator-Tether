@@ -164,11 +164,12 @@ def get_mc_failure_rates(mc_data: dict, params: dict) -> dict:
 # ---------------------------------------------------------------------------
 def build_cost_assumptions(params: dict, launch_cost_per_kg: float,
                            payload_revenue_per_kg: float,
-                           mc_rates: dict = None) -> dict:
+                           mc_rates: dict = None,
+                           N_override: int = None) -> dict:
     """
     Derive cost model inputs from physical parameters and cost rates.
     """
-    N = int(params["segments"]["N_baseline"])
+    N = N_override if N_override is not None else int(params["segments"]["N_baseline"])
     m_star = float(params["segments"]["m_star"])
     m_sleeve = float(params["segments"]["m_sleeve"])
     m_climber = float(params["climber"]["m_climber"])
@@ -231,18 +232,26 @@ def build_cost_assumptions(params: dict, launch_cost_per_kg: float,
 # NPV calculations
 # ---------------------------------------------------------------------------
 def compute_npv_modular(cost: dict, discount_rate: float,
-                        lifetime: int) -> np.ndarray:
+                        lifetime: int,
+                        f_threshold: float = 0.6) -> np.ndarray:
     """
     Compute cumulative NPV for modular architecture with phased construction.
 
     Key innovation: modular tether generates revenue incrementally as segments
     are deployed. Revenue ramps linearly from 0 to full over construction period.
+
+    Parameters
+    ----------
+    f_threshold : float
+        Fraction of segments that must be deployed before revenue begins.
+        Default 0.6 (baseline).
     """
     npv = np.zeros(lifetime + 1)
     N = cost["N"]
     years_to_build = cost["years_to_build"]
     C_build_total = cost["C_build"]
     C_repair_annual = cost["repairs_per_year"] * cost["C_repair_event"]
+    ramp_width = 1.0 - f_threshold
 
     for y in range(1, lifetime + 1):
         # Construction spending: spread evenly over build period
@@ -252,9 +261,13 @@ def compute_npv_modular(cost: dict, discount_rate: float,
             C_construction = 0.0
 
         # Revenue ramp: proportional to segments deployed
-        # Minimum viable tether needs ~60% of segments for first climber path
         segments_deployed = min(N, y * cost["construction_cadence"])
-        operational_fraction = max(0.0, (segments_deployed / N - 0.6) / 0.4)
+        if ramp_width > 0:
+            operational_fraction = max(0.0,
+                                       (segments_deployed / N - f_threshold)
+                                       / ramp_width)
+        else:
+            operational_fraction = 1.0 if segments_deployed >= N else 0.0
         operational_fraction = min(1.0, operational_fraction)
         Revenue = cost["Revenue_annual_max"] * operational_fraction
 
@@ -269,16 +282,24 @@ def compute_npv_modular(cost: dict, discount_rate: float,
 
 
 def compute_npv_monolithic(cost: dict, discount_rate: float,
-                           lifetime: int) -> np.ndarray:
+                           lifetime: int,
+                           P_fail_override: float = None) -> np.ndarray:
     """
     Compute cumulative NPV for monolithic architecture.
 
     Monolithic: zero revenue until full tether is complete (same build time),
     then full revenue but with annual catastrophic failure risk.
+
+    Parameters
+    ----------
+    P_fail_override : float or None
+        If provided, use this annual failure probability instead of
+        cost["P_fail_annual_mono"].
     """
     npv = np.zeros(lifetime + 1)
     years_to_build = cost["years_to_build"]
     C_build_total = cost["C_build"]
+    P_fail = P_fail_override if P_fail_override is not None else cost["P_fail_annual_mono"]
 
     for y in range(1, lifetime + 1):
         if y <= years_to_build:
@@ -289,7 +310,7 @@ def compute_npv_monolithic(cost: dict, discount_rate: float,
             # Operational phase
             Revenue = cost["Revenue_annual_max"]
             C_ops = cost["C_ops_annual"]
-            expected_replace = cost["P_fail_annual_mono"] * cost["C_replace_full"]
+            expected_replace = P_fail * cost["C_replace_full"]
             annual_cf = Revenue - C_ops - expected_replace
 
         npv[y] = npv[y - 1] + annual_cf / (1 + discount_rate) ** y
@@ -500,9 +521,103 @@ def plot_cost_tornado(sweep: dict, output_path: Path = None):
 
 
 # ---------------------------------------------------------------------------
+# Sensitivity sweeps (§7.5)
+# ---------------------------------------------------------------------------
+def sweep_p_fail_mono(params: dict, mc_rates: dict = None,
+                      N_cost: int = 83) -> dict:
+    """
+    Sweep monolithic annual failure probability P_fail_mono ∈ {1e-4..1e-1}
+    across all (launch_cost, discount_rate, revenue) combos.
+
+    Uses N_cost (default 83, the optimistic design point) for the cost model
+    to be consistent with the paper's §7 analysis.
+    """
+    p_fail_values = [1e-4, 1e-3, 5e-3, 1e-2, 5e-2, 1e-1]
+    launch_costs = [float(x) for x in params["cost"]["launch_cost_sweep"]]
+    discount_rates = [float(x) for x in params["cost"]["discount_rate_sweep"]]
+    revenues = [float(x) for x in params["cost"]["payload_revenue_sweep"]]
+    lifetime = int(params["cost"]["system_lifetime"])
+
+    # shape: (p_fail, launch_cost, discount_rate, revenue)
+    shape = (len(p_fail_values), len(launch_costs),
+             len(discount_rates), len(revenues))
+    delta_npv = np.zeros(shape)
+    modular_wins = np.zeros(shape, dtype=bool)
+
+    for p, pf in enumerate(p_fail_values):
+        for i, lc in enumerate(launch_costs):
+            for j, dr in enumerate(discount_rates):
+                for k, rev in enumerate(revenues):
+                    cost = build_cost_assumptions(params, lc, rev, mc_rates,
+                                                  N_override=N_cost)
+                    npv_m = compute_npv_modular(cost, dr, lifetime)
+                    npv_o = compute_npv_monolithic(cost, dr, lifetime,
+                                                   P_fail_override=pf)
+                    delta_npv[p, i, j, k] = npv_m[-1] - npv_o[-1]
+                    modular_wins[p, i, j, k] = npv_m[-1] > npv_o[-1]
+
+    return {
+        "p_fail_values": p_fail_values,
+        "launch_costs": launch_costs,
+        "discount_rates": discount_rates,
+        "revenues": revenues,
+        "delta_npv": delta_npv,
+        "modular_wins": modular_wins,
+    }
+
+
+def sweep_f_threshold(params: dict, mc_rates: dict = None,
+                      N_cost: int = 83) -> dict:
+    """
+    Sweep operational threshold f_threshold ∈ {0.5..0.9} across all
+    (launch_cost, discount_rate, revenue) combos.
+
+    Uses N_cost (default 83) for the cost model.
+    """
+    f_values = [0.5, 0.6, 0.7, 0.8, 0.9]
+    launch_costs = [float(x) for x in params["cost"]["launch_cost_sweep"]]
+    discount_rates = [float(x) for x in params["cost"]["discount_rate_sweep"]]
+    revenues = [float(x) for x in params["cost"]["payload_revenue_sweep"]]
+    lifetime = int(params["cost"]["system_lifetime"])
+
+    shape = (len(f_values), len(launch_costs),
+             len(discount_rates), len(revenues))
+    delta_npv = np.zeros(shape)
+    modular_wins = np.zeros(shape, dtype=bool)
+
+    for f, ft in enumerate(f_values):
+        for i, lc in enumerate(launch_costs):
+            for j, dr in enumerate(discount_rates):
+                for k, rev in enumerate(revenues):
+                    cost = build_cost_assumptions(params, lc, rev, mc_rates,
+                                                  N_override=N_cost)
+                    npv_m = compute_npv_modular(cost, dr, lifetime,
+                                                f_threshold=ft)
+                    npv_o = compute_npv_monolithic(cost, dr, lifetime)
+                    delta_npv[f, i, j, k] = npv_m[-1] - npv_o[-1]
+                    modular_wins[f, i, j, k] = npv_m[-1] > npv_o[-1]
+
+    return {
+        "f_values": f_values,
+        "launch_costs": launch_costs,
+        "discount_rates": discount_rates,
+        "revenues": revenues,
+        "delta_npv": delta_npv,
+        "modular_wins": modular_wins,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(
+        description="Lifecycle NPV: modular vs. monolithic tether")
+    parser.add_argument("--sensitivity", action="store_true",
+                        help="Run P_fail_mono and f_threshold sensitivity sweeps (§7.5)")
+    args = parser.parse_args()
+
     params = load_params()
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
@@ -595,6 +710,86 @@ def main():
 
     plot_npv_crossover(sweep, FIGURES_DIR / "fig_npv_crossover.pdf")
     plot_cost_tornado(sweep, FIGURES_DIR / "fig_cost_tornado.pdf")
+
+    # --- §7.5 Sensitivity sweeps ---
+    if args.sensitivity:
+        print("\n" + "=" * 60)
+        print("§7.5 SENSITIVITY SWEEPS")
+        print("=" * 60)
+
+        # P_fail_mono sweep
+        print("\n  P_fail_mono sweep:")
+        pf_sweep = sweep_p_fail_mono(params, mc_rates)
+        lc_idx = len(pf_sweep["launch_costs"]) // 2   # $1000/kg
+        dr_idx_s = len(pf_sweep["discount_rates"]) // 2  # 7%
+        print(f"  {'P_fail_mono':>12s}" + "".join(
+            f"  Rev=${r:.0f}" for r in pf_sweep["revenues"]))
+        for p, pf in enumerate(pf_sweep["p_fail_values"]):
+            row = f"  {pf:>12.1e}"
+            for k in range(len(pf_sweep["revenues"])):
+                d = pf_sweep["delta_npv"][p, lc_idx, dr_idx_s, k]
+                row += f"  {d/1e9:>8.3f}"
+            print(row)
+
+        # Find crossover threshold at baseline revenue
+        k_base = len(pf_sweep["revenues"]) // 2
+        crossover_pf = None
+        for p in range(len(pf_sweep["p_fail_values"]) - 1):
+            d0 = pf_sweep["delta_npv"][p, lc_idx, dr_idx_s, k_base]
+            d1 = pf_sweep["delta_npv"][p + 1, lc_idx, dr_idx_s, k_base]
+            if d0 < 0 and d1 >= 0:
+                # Linear interpolation in log space
+                pf0 = pf_sweep["p_fail_values"][p]
+                pf1 = pf_sweep["p_fail_values"][p + 1]
+                frac = -d0 / (d1 - d0)
+                crossover_pf = pf0 * (pf1 / pf0) ** frac
+                break
+            elif d0 >= 0:
+                crossover_pf = pf_sweep["p_fail_values"][0]
+                break
+
+        if crossover_pf is not None:
+            print(f"\n  Crossover P_fail_mono (baseline): {crossover_pf:.2e}/year")
+        else:
+            # Modular always wins or always loses
+            if pf_sweep["delta_npv"][-1, lc_idx, dr_idx_s, k_base] > 0:
+                print("\n  Modular wins across all P_fail_mono values.")
+            else:
+                print("\n  Monolithic wins across all P_fail_mono values.")
+
+        # f_threshold sweep
+        print("\n  f_threshold sweep:")
+        ft_sweep = sweep_f_threshold(params, mc_rates)
+        print(f"  {'f_threshold':>12s}" + "".join(
+            f"  Rev=${r:.0f}" for r in ft_sweep["revenues"]))
+        for f, ft in enumerate(ft_sweep["f_values"]):
+            row = f"  {ft:>12.2f}"
+            for k in range(len(ft_sweep["revenues"])):
+                d = ft_sweep["delta_npv"][f, lc_idx, dr_idx_s, k]
+                row += f"  {d/1e9:>8.3f}"
+            print(row)
+
+        # Find max f_threshold where modular wins at all revenues
+        max_ft_all = 0.0
+        for f, ft in enumerate(ft_sweep["f_values"]):
+            if all(ft_sweep["modular_wins"][f, lc_idx, dr_idx_s, :]):
+                max_ft_all = ft
+        print(f"\n  Max f_threshold (modular wins at all revenues): {max_ft_all:.2f}")
+
+        # Save sensitivity results
+        np.savez(
+            OUTPUT_DIR / "npv_sensitivity.npz",
+            p_fail_values=pf_sweep["p_fail_values"],
+            p_fail_delta_npv=pf_sweep["delta_npv"],
+            p_fail_modular_wins=pf_sweep["modular_wins"],
+            f_values=ft_sweep["f_values"],
+            f_threshold_delta_npv=ft_sweep["delta_npv"],
+            f_threshold_modular_wins=ft_sweep["modular_wins"],
+            launch_costs=pf_sweep["launch_costs"],
+            discount_rates=pf_sweep["discount_rates"],
+            revenues=pf_sweep["revenues"],
+        )
+        print(f"\n  Saved: {OUTPUT_DIR / 'npv_sensitivity.npz'}")
 
     print("\nDone.")
 

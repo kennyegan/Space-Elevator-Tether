@@ -29,6 +29,8 @@ env/
 data/raw/*.npz
 data/raw/*.h5
 data/processed/*.npz
+!data/processed/npv_results.npz
+!data/processed/npv_sensitivity.npz
 data/processed/*.h5
 
 # IDE

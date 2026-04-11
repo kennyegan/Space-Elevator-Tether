@@ -309,7 +309,7 @@ Note: The exponential baseline grid does not include N = 83 (the optimistic desi
 6. Detected → repair (wait + travel + 1.4 h replacement), draw new TTF
 7. Not detected → joint remains failed, load redistribution persists
 
-**Arrhenius calibration:** λ_0_pre derived from λ̄_fullscale = 5.2 × 10⁻⁸ weighted by joint count per thermal zone. Self-consistency verified at startup.
+**Arrhenius calibration:** λ_0_pre derived from λ̄_fullscale = 5.12 × 10⁻⁸ weighted by joint count per thermal zone. Self-consistency verified at startup.
 
 **Computational:** 10⁵ trajectories per combination (2.27 × 10⁸ total). Vectorized inner loop; GPU option via CuPy for cluster deployment.
 

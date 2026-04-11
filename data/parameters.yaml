@@ -33,7 +33,7 @@ design:
 segments:
   m_star: 18000.0            # kg (target per-segment mass)
   m_launch_cap: 30000.0      # kg (hard limit)
-  N_baseline: 18
+  N_baseline: 83
   m_sleeve: 35.0             # kg per joint
 
 joints:
@@ -44,7 +44,7 @@ joints:
   # λ̄ = 1.2e-8/h is mission-averaged over thermal profile (coupon-scale)
   # Full-scale: Weibull volume scaling from 50 mm coupons to 3.0 m × 1.2 m sleeves
   lambda_0_bar: 1.2e-8       # 1/h coupon-scale mission-averaged (Wright 2023)
-  lambda_0: 5.2e-8           # 1/h full-scale = lambda_0_bar × volume_scale_factor
+  lambda_0: 5.12e-8          # 1/h full-scale = lambda_0_bar × volume_scale_factor
   Q_activation: 1.76e-19     # J (1.1 eV activation energy for void growth)
   weibull_modulus: 6          # Weibull shape parameter for CNT composites
   volume_ratio: 6000          # V_sleeve / V_coupon = (3.0×1.2×0.004) / (0.05×0.012×0.004)

@@ -29,7 +29,7 @@ The modular tether reframes the space-elevator challenge from materials perfecti
 
 Earth-to-orbit transportation costs $2,000–$4,000/kg via chemical rockets, with approximately 400 t CO₂-equivalent per launch. A space elevator — a continuous tether from an equatorial anchor through geostationary orbit (GEO, 35,786 km) to a counterweight beyond 100,000 km — could reduce marginal launch costs by 1–2 orders of magnitude using electrically powered climbers with zero propellant.
 
-The linchpin is the tether. Analytical tapering requires specific tensile strengths exceeding 30 GPa·cm³/g over 100,000 km. Carbon-nanotube yarns now achieve 80 GPa on centimeter gauges (Bai et al., 2018) and continuous kilometer-scale fibers at ~5 GPa specific strength (Niu et al., 2025), narrowing the gap but leaving a significant shortfall relative to the assumed σ_u = 50 GPa baseline (see §2.2).
+The linchpin is the tether. Analytical tapering requires specific tensile strengths exceeding 30 GPa·cm³/g over 100,000 km. Carbon-nanotube yarns now achieve 80 GPa on centimeter gauges (Bai et al., 2018) and continuous kilometer-scale fibers at 4.1 N·tex⁻¹ tensile strength (≈5.3 GPa at ρ = 1,300 kg/m³; Niu et al., 2025), narrowing the gap but leaving a significant shortfall relative to the assumed σ_u = 50 GPa baseline (see §2.2).
 
 ### 1.1 The Core Problem: Architecture, Not Materials
 
@@ -76,13 +76,13 @@ No published study has quantified joint reliability and load-path continuity in 
 
 ### 2.1 Tether Architecture
 
-Early feasibility studies assumed a monolithic, exponentially tapered ribbon (Edwards & Westling, 2003). Recent work shows that subdividing the tether into repairable modules can relax peak-stress requirements and simplify maintenance. Luo et al. (2022a) quantified a 22% stress reduction with 10–100 km segments joined by sleeve couplers, and subsequently analyzed the stability of such segmented configurations (Luo et al., 2022b). Popescu and Sun (2018) introduced a bio-inspired bundle architecture with active self-repair. The IAA Study Group 3.10 recommended a one-meter-wide woven ribbon with in-plane redundancy (Swan et al., 2013). An alternative architecture — the "Spaceline" anchored to the Moon rather than supported centrifugally — sidesteps the taper problem entirely and is feasible with existing materials (Penoyre & Sandford, 2019), though it cannot provide direct surface-to-orbit access.
+Early feasibility studies assumed a monolithic, exponentially tapered ribbon (Edwards & Westling, 2003). Recent work shows that subdividing the tether into repairable modules can relax peak-stress requirements and simplify maintenance. Luo et al. (2022a) demonstrated a 56% peak-stress reduction using 5–6 optimized segments with connecting platforms, and subsequently analyzed the stability of such segmented configurations (Luo et al., 2022b). Popescu and Sun (2018) introduced a bio-inspired bundle architecture with active self-repair. The IAA Study Group 3.10 recommended a one-meter-wide woven ribbon with in-plane redundancy (Swan et al., 2013). An alternative architecture — the "Spaceline" anchored to the Moon rather than supported centrifugally — largely sidesteps the taper problem and is feasible with existing materials (Penoyre & Sandford, 2019), though it cannot provide direct surface-to-orbit access.
 
 **Gap:** No study couples joint reliability with segment geometry, repair logistics, and lifecycle economics at system level.
 
 ### 2.2 CNT Mechanics
 
-Carbon nanotubes remain the reference material: laboratory coupon strengths of 80 GPa (Bai et al., 2018) and continuous kilometer-scale fibers at ~5 GPa specific strength (Niu et al., 2025) bracket the assumed σ_u = 50 GPa baseline used in this study. This baseline is aspirational — it has not been demonstrated at ribbon scale — and represents a 10× gap from the best demonstrated continuous-fiber performance. The trajectory of CNT fiber development (Mikhalchan & Vilatela, 2020) and defect-tolerant strength scaling analysis (Carpinteri & Pugno, 2008, predicting macroscopic asymptotic strength of ~10 GPa for optimized cables) suggest that narrowing this gap is plausible but will require fundamental advances in spinning technology and defect control. The gap between laboratory and 100,000 km production has not been addressed with engineering knock-down factors.
+Carbon nanotubes remain the reference material: laboratory coupon strengths of 80 GPa (Bai et al., 2018) and continuous kilometer-scale fibers at 4.1 N·tex⁻¹ tensile strength (≈5.3 GPa at ρ = 1,300 kg/m³; Niu et al., 2025) bracket the assumed σ_u = 50 GPa baseline used in this study. This baseline is aspirational — it has not been demonstrated at ribbon scale — and represents a 10× gap from the best demonstrated continuous-fiber performance. The trajectory of CNT fiber development (Mikhalchan & Vilatela, 2020) and defect-tolerant strength scaling analysis (Carpinteri & Pugno, 2008, predicting macroscopic asymptotic strength of ~10 GPa for optimized cables) suggest that narrowing this gap is plausible but will require fundamental advances in spinning technology and defect control. The gap between laboratory and 100,000 km production has not been addressed with engineering knock-down factors.
 
 ### 2.3 Tether Dynamics
 
@@ -149,7 +149,7 @@ where I_geo = ∫_R^{r_GEO} |a_net(r)| dr ≈ 4.84 × 10⁷ m²/s² is a fixed g
 | This paper (conservative) | 25 | 1,300 | — | 12.40 | σ_u/SF (SF=2) |
 | Popescu & Sun (2018) | 21.5 | 1,631 | 36.9 | 39.4 | σ_u/2 (STR method CNT) |
 
-Every published ratio is recoverable from ln(T_r) = ρ × I_geo / σ_design with no residual discrepancy. The apparent disagreement in the literature reduces to undeclared assumptions about the stress basis and material properties.
+Every published ratio is recoverable from ln(T_r) = ρ × I_geo / σ_design within 7%, with the largest residual (6.8%) occurring for Popescu & Sun's STR-method value (T_r = 36.9 published vs. 39.4 calculated) — possibly reflecting different integration bounds or base-area conventions not fully documented in their paper. The apparent disagreement in the literature reduces to undeclared assumptions about the stress basis and material properties.
 
 **Edwards & Westling's T_r ≈ 1.9** specifically requires: (1) σ_design = σ_u ≈ 100 GPa with no safety factor on the taper shape, (2) ρ = 1,300 kg/m³, and (3) a seed-ribbon A_base (not full payload capacity). Changing any one of these assumptions significantly alters the architecture: applying SF = 2 to the taper raises T_r from 1.9 to 3.5 at 100 GPa (or to 12.4 at σ_u = 50 GPa with SF = 2); using ρ = 1,500 raises T_r by ~20%; and sizing A_base for a 20 t climber (rather than a seed ribbon) increases N from ~18 to ~83 segments.
 
@@ -176,7 +176,7 @@ The minimum viable CNT strength is defined as the σ_u at which the architecture
 | 30 | 8.15 | 290 | 5,235 t | Yes |
 | 35 | 6.04 | 191 | 3,443 t | Yes |
 | 40 | 4.82 | 137 | 2,472 t | Yes |
-| 50 | 3.52 | 83 | 1,502 t | Yes |
+| 50 | 3.52 | 83 | 1,497 t | Yes |
 | 60 | 2.86 | 58 | 1,043 t | Yes |
 | 70 | 2.46 | 44 | 785 t | Yes |
 
@@ -254,10 +254,10 @@ Integrating the orbital thermal profile gives an assumed mission-averaged λ̄ =
 **Volume scaling:** Full-scale sleeves (3.0 m × 1.2 m × 4 mm) are 6,000× the volume of test coupons (50 mm × 12 mm × 4 mm). Weibull weakest-link scaling with assumed modulus m = 6 gives:
 
 ```
-λ_fullscale = λ_coupon × (V_sleeve / V_coupon)^(1/m) = 1.2e-8 × 6000^(1/6) ≈ 5.2 × 10⁻⁸ h⁻¹
+λ_fullscale = λ_coupon × (V_sleeve / V_coupon)^(1/m) = 1.2e-8 × 6000^(1/6) = 5.12 × 10⁻⁸ h⁻¹
 ```
 
-This hazard-rate scaling is a common engineering approximation; rigorously, Weibull weakest-link theory applies to strength distributions rather than directly to time-dependent hazard rates. Additionally, Bertalan et al. (2014) demonstrate that Weibull scaling becomes unstable for quasi-brittle materials with modulus m < 30, which includes CNT assemblies (see also Carpinteri & Pugno, 2008, on size-effect scaling in nano-structured materials). The baseline m = 6 is chosen as a midpoint assumption between the only CNT-specific measurement available (m ≈ 2.7 for CNT bundles; Pugno & Ruoff, 2006) and values typical of engineered ceramic composites (m = 8–12). Since no Weibull modulus has been measured for CNT sleeve bonds specifically, we sweep m ∈ {2.7, 4, 6, 8, 10} to bound this uncertainty (Fig. S19). At m = 2.7 (pessimistic), the volume scaling factor increases from 4.3× to 25.1× and λ_full rises from 5.1 × 10⁻⁸ to 3.0 × 10⁻⁷ h⁻¹. Despite this 6× increase in hazard rate, the system maintains P_sys ≥ 0.995 at η_j ≥ 0.80 for N = 83 — demonstrating that the modular architecture is robust to pessimistic volume scaling assumptions. The design margin established by the η_j and p_det requirements absorbs even an order-of-magnitude increase in the effective hazard rate.
+**Important distinction:** Weibull weakest-link theory rigorously applies to static strength distributions — the probability that a specimen of volume V survives a given stress scales as exp(−(V/V₀)(σ/σ₀)^m). Applying this scaling to time-dependent hazard rates (as done here) is an engineering approximation, not a physical derivation. Diffusion-controlled void growth kinetics depend on geometric path lengths and surface-to-volume ratios, not solely on the number of independent failure initiation sites. The volume-scaling formulation should therefore be understood as an engineering bound — it assumes that the dominant failure mode is initiation-limited (consistent with weakest-link statistics) rather than propagation-limited (where fracture mechanics scaling would apply). Experimental full-scale hazard rate data, when available, would supersede this approximation. Additionally, Bertalan et al. (2014) demonstrate that Weibull scaling becomes unstable for quasi-brittle materials with modulus m < 30, which includes CNT assemblies (see also Carpinteri & Pugno, 2008, on size-effect scaling in nano-structured materials). The baseline m = 6 is chosen as a midpoint assumption between the only CNT-specific measurement available (m ≈ 2.7 for CNT bundles; Pugno & Ruoff, 2006) and values typical of engineered ceramic composites (m = 8–12). Since no Weibull modulus has been measured for CNT sleeve bonds specifically, we sweep m ∈ {2.7, 4, 6, 8, 10} to bound this uncertainty (Fig. S19). At m = 2.7 (pessimistic), the volume scaling factor increases from 4.3× to 25.1× and λ_full rises from 5.1 × 10⁻⁸ to 3.0 × 10⁻⁷ h⁻¹. Despite this 6× increase in hazard rate, the system maintains P_sys ≥ 0.995 at η_j ≥ 0.80 for N = 83 — demonstrating that the modular architecture is robust to pessimistic volume scaling assumptions. The design margin established by the η_j and p_det requirements absorbs even an order-of-magnitude increase in the effective hazard rate.
 
 The pre-exponential λ_0_pre is derived by calibrating against this mission-averaged rate weighted by the number of joints in each thermal zone (not by tether length).
 
@@ -364,7 +364,7 @@ To capture transverse dynamics and Coriolis coupling, we upgrade to a 2D model i
 - **Tension** (transverse): T(r)/L tensioned-string stiffness, where T(r) = σ_design × A(r) varies by a factor of T_r ≈ 12.4 along the tether
 - **Gravity-gradient** (longitudinal): position-dependent restoring force (ω² + 2GM/r³) from tidal stretching, evaluated via 2-point Gauss quadrature
 
-The transverse gravity-gradient body force (ω² − GM/r³)v is omitted from the FEM element stiffness. This term provides a destabilizing (negative stiffness) contribution below GEO and a stabilizing (positive stiffness) contribution above GEO. To assess the impact of this omission, we computed the ratio of tension-string stiffness T(r)/L_element to gravity-gradient stiffness |ρA(r)L_element(ω² − GM/r³)| at all 500 element midpoints (Fig. S18). Outside a ±1,000 km band centered on GEO (where both terms approach zero by definition), the tension-string stiffness exceeds the gravity-gradient contribution by a factor of at least 3,180×, confirming that the omitted term is negligible for the transverse modal analysis. The 19% discrepancy between the 2D transverse period (30.0 h) and the analytical uniform-string estimate (25.3 h) is therefore attributable to the non-uniform taper (mass concentration near GEO lowering the effective frequency), not to the missing gravity-gradient stiffness. The Coriolis coupling results (16% frequency shift) are unaffected by this omission since the gyroscopic matrix G is independent of the transverse stiffness.
+The transverse gravity-gradient body force (ω² − GM/r³)v is omitted from the FEM element stiffness. This term provides a destabilizing (negative stiffness) contribution below GEO and a stabilizing (positive stiffness) contribution above GEO. To assess the impact of this omission, we computed the ratio of tension-string stiffness T(r)/L_element to gravity-gradient stiffness |ρA(r)L_element(ω² − GM/r³)| at all 500 element midpoints (Fig. S18). Outside a ±1,000 km band centered on GEO (where both terms approach zero by definition), the tension-string stiffness exceeds the gravity-gradient contribution by a factor of at least 3,180×, confirming that the omitted term is negligible for the transverse modal analysis. The ~19% discrepancy between the 2D transverse period (30.0 h) and the analytical uniform-string estimate (25.3 h) is therefore attributable to the non-uniform taper (mass concentration near GEO lowering the effective frequency), not to the missing gravity-gradient stiffness. The Coriolis coupling results (16% frequency shift) are unaffected by this omission since the gyroscopic matrix G is independent of the transverse stiffness.
 
 **Coriolis coupling:** The skew-symmetric gyroscopic matrix G couples longitudinal velocity (u̇) into the transverse equation and vice versa. This is the key upgrade — without G, longitudinal and transverse modes are independent; with G, they interact, shifting frequencies and enabling energy transfer between DOFs.
 
@@ -374,7 +374,7 @@ The transverse gravity-gradient body force (ω² − GM/r³)v is omitted from th
 
 **Mesh:** Non-uniform spacing with Gaussian refinement near GEO (where the taper is steepest), plus 600,000 kg counterweight mass at the free tip.
 
-**Validation:** Six checks all pass: K positive definite, 1D longitudinal recovery (2.4% error vs existing model), Coriolis matrix skew-symmetry (‖G + Gᵀ‖/‖G‖ = 0), energy conservation (<0.1% drift undamped over 100 h), mesh convergence (<0.1% between 250 and 500 elements), and joint compliance shift (2.44% vs 1D's 2.32%).
+**Validation:** Six checks all pass: K positive definite, 1D longitudinal recovery (2.4% error vs existing model), Coriolis matrix skew-symmetry (‖G + Gᵀ‖/‖G‖ = 0), energy conservation (<0.1% drift undamped over 100 h), mesh convergence (<0.1% between 250 and 500 elements), and joint compliance effect (the 2D transverse fundamental shows negligible joint compliance shift — 0.0% vs 1D's 2.32% — because the transverse mode's tension-string stiffness is dominated by the gravity-gradient equilibrium tension T(r), which is independent of η_j, unlike the 1D elastic stiffness EA/L that is directly proportional to joint efficiency).
 
 #### 5.3.3 Single-Climber Transit Simulation
 
@@ -399,7 +399,7 @@ where f_operational(t) = max(0, min(1, (segments_deployed/N − 0.6) / 0.4)) —
 
 The 60% operational threshold assumes a GEO-outward/GEO-inward simultaneous deployment strategy (Edwards & Westling, 2003, §4.3): the tether is deployed from GEO both downward toward the surface and upward toward the counterweight simultaneously. At ~60% of total segment count, the downward strand reaches the surface anchor and the upward strand reaches sufficient counterweight altitude for gravity-gradient stabilization, enabling the first low-capacity climber traversals. Revenue ramps linearly from 60% (first traversal) to 100% (full design capacity) as remaining segments are added and the tether reaches full cross-section. This deployment model is idealized — the actual revenue ramp depends on operational certification milestones — but captures the fundamental phased-construction advantage: partial functionality before full completion.
 
-To test the sensitivity of this assumption, we sweep f_threshold ∈ {0.5, 0.6, 0.7, 0.8, 0.9} and report the NPV impact. The modular advantage narrows monotonically with increasing f_threshold but remains positive across all tested cost scenarios: at baseline revenue ($300/kg), delta_NPV decreases from $0.41B (f = 0.5) to $0.18B (f = 0.9). Even at f_threshold = 0.9, the advantage persists because the monolithic architecture still incurs expected failure costs during the operational phase.
+To test the sensitivity of this assumption, we sweep f_threshold ∈ {0.5, 0.6, 0.7, 0.8, 0.9} and report the NPV impact. The modular advantage narrows monotonically with increasing f_threshold but remains positive across all tested cost scenarios: at baseline revenue ($300/kg), delta_NPV decreases from $0.41B (f = 0.5) to $0.17B (f = 0.9). Even at f_threshold = 0.9, the advantage persists because the monolithic architecture still incurs expected failure costs during the operational phase.
 
 Monolithic:
 ```
@@ -453,7 +453,7 @@ The continuous taper profile was validated against first principles:
 
 Under **optimistic tapering** (σ_u, no SF on shape):
 - T_r = 3.52 at σ_u = 50 GPa
-- N ≈ 83 segments, M_total ≈ 1,502 t
+- N ≈ 83 segments, M_total ≈ 1,497 t
 - Architecture closes at σ_u ≥ 30 GPa (all configurations feasible with m_j_max < 30 t)
 
 Under **conservative tapering** (σ_allow = σ_u/SF):
@@ -471,7 +471,7 @@ The sensitivity sweep across σ_u = 30–70 GPa reveals:
 
 **Optimistic tapering:**
 - All configurations feasible (m_j_max ≤ 30 t) down to σ_u = 30 GPa
-- Minimum viable strength: σ_u = 30 GPa (laboratory coupon strengths reach 80 GPa per Bai et al. (2018), but continuous kilometer-scale fibers currently achieve ~5 GPa (Niu et al., 2025); the 50 GPa baseline remains aspirational)
+- Minimum viable strength: σ_u = 30 GPa (laboratory coupon strengths reach 80 GPa per Bai et al. (2018), but continuous kilometer-scale fibers currently achieve 4.1 N·tex⁻¹ (≈5.3 GPa; Niu et al., 2025); the 50 GPa baseline remains aspirational)
 
 **Conservative tapering:**
 - All configurations feasible but with N > 100 segments even at σ_u = 70 GPa
@@ -622,11 +622,11 @@ The 2D model reveals that the lowest-frequency mode is **transverse** (lateral s
 |----------|-------------|---------------|----------------|
 | T₁ transverse [h] | 30.0 | 34.8 | +16% |
 | T₂ transverse [h] | 10.2 | 10.5 | +2.5% |
-| T₁ longitudinal [h] | 7.65 | 7.12 | −7% |
+| T₁ longitudinal [h] | 10.22 | 10.46 | +2.3% |
 
-The Coriolis coupling shifts the transverse fundamental period by 16% — a significant effect that cannot be captured by any 1D model. The 30.0 h no-Coriolis transverse period is 19% longer than the 25.3 h analytical pendulum period; this difference arises because the non-uniform taper concentrates mass near GEO (where the cross-section peaks), which lowers the effective mode frequency compared to the uniform-string analytical formula. The omitted transverse gravity-gradient stiffness is negligible (tension-string stiffness exceeds it by >3,000× outside GEO ± 1,000 km; see §5.3.2).
+The Coriolis coupling shifts the transverse fundamental period by 16% — a significant effect that cannot be captured by any 1D model. The 30.0 h no-Coriolis transverse period is ~19% longer than the 25.3 h analytical pendulum period; this difference arises because the non-uniform taper concentrates mass near GEO (where the cross-section peaks), which lowers the effective mode frequency compared to the uniform-string analytical formula. The omitted transverse gravity-gradient stiffness is negligible (tension-string stiffness exceeds it by >3,000× outside GEO ± 1,000 km; see §5.3.2).
 
-The first longitudinal elastic mode at 7.65 h is distinct from the 25.3 h analytical pendulum period. The 25.3 h result comes from c = √(σ/ρ), which represents the gravity-gradient wave speed where geometric stiffness balances inertia. The 7.65 h mode arises from the full elastic stiffness EA/L, which is ~11× stiffer (E/σ = 280/25 = 11.2). These are physically different oscillation mechanisms: the pendulum mode is a whole-tether libration driven by the gravity gradient; the elastic mode is a compression wave.
+The first longitudinal elastic mode at 10.22 h (no Coriolis) is distinct from the 25.3 h analytical pendulum period. The 25.3 h result comes from c = √(σ/ρ), which represents the gravity-gradient wave speed where geometric stiffness balances inertia. The 10.22 h mode arises from the full elastic stiffness EA/L, modified by the non-uniform taper distribution. The Coriolis coupling produces a small +2.3% period increase (10.22 → 10.46 h) in the longitudinal mode, consistent with the weak coupling expected when the longitudinal stiffness is much larger than the transverse. These are physically different oscillation mechanisms: the pendulum mode is a whole-tether libration driven by the gravity gradient; the elastic mode is a compression wave.
 
 #### Single-Climber Transit Results
 
@@ -671,12 +671,12 @@ Even at ζ = 0.05 (aggressive damping), resonant transverse displacement remains
 
 | Parameter | Value |
 |-----------|-------|
-| Tether mass (optimistic, N=83) | 1,502 t |
-| Build cost (at $1000/kg) | $1.50B |
-| Annual operations | $30M (2% of build) |
+| Tether mass (optimistic, N=83) | 1,497 t |
+| Build cost (at $1000/kg) | $1.58B |
+| Annual operations | $32M (2% of build) |
 | Max annual revenue | $300M (50 trips × 20 t × $300/kg) |
 | Repair cost per event | $27.1M |
-| Expected repairs/year | 0.01 |
+| Expected repairs/year | 0.04 |
 | Construction cadence | 12 segments/year |
 | Years to build | ~7 (83 segments / 12 per year) |
 
@@ -684,16 +684,16 @@ Even at ζ = 0.05 (aggressive damping), resonant transverse displacement remains
 
 A potential economic advantage of the modular architecture, contingent on the deployment strategy enabling early partial operation, is **earlier revenue generation**.
 
-- **Modular:** Revenue begins at ~60% tether completion, assuming a GEO-outward/GEO-inward simultaneous deployment strategy (Edwards & Westling, 2003, §4.3) in which the tether is deployed from GEO both downward toward the surface and upward toward the counterweight simultaneously. At ~60% of total segment count, the downward strand reaches the surface anchor and the upward strand reaches sufficient counterweight altitude for gravity-gradient stabilization, enabling the first low-capacity climber traversals. At 12 segments/year with N = 83, the first climber traverses at year ~5 (segment 50 of 83). Revenue ramps linearly from 60% (first traversal) to 100% (full design capacity) as remaining segments are added and the tether reaches full cross-section.
+- **Modular:** Revenue begins at ~60% tether completion, assuming a GEO-outward/GEO-inward simultaneous deployment strategy (Edwards & Westling, 2003, §4.3) in which the tether is deployed from GEO both downward toward the surface and upward toward the counterweight simultaneously. At ~60% of total segment count, the downward strand reaches the surface anchor and the upward strand reaches sufficient counterweight altitude for gravity-gradient stabilization, enabling the first low-capacity climber traversals. At 12 segments/year with N = 83, the first climber traverses at year ~4 (segment 50 of 83). Revenue ramps linearly from 60% (first traversal) to 100% (full design capacity) as remaining segments are added and the tether reaches full cross-section.
 - **Monolithic:** Zero revenue until 100% complete (year ~7).
-- **Revenue head start:** ~0.6 years of exclusive partial revenue, worth approximately $0.05–0.16B in present value depending on launch cost and revenue assumptions.
+- **Revenue head start:** ~2.8 years of exclusive partial revenue, worth approximately $0.05–0.16B in present value depending on launch cost and revenue assumptions.
 
-This deployment model is idealized — the actual revenue ramp depends on operational certification milestones — but captures the fundamental phased-construction advantage: partial functionality before full completion.
+This deployment model is idealized — the actual revenue ramp depends on operational certification milestones — but captures the fundamental phased-construction advantage: partial functionality before full completion. **Structural caveat:** The dynamic analysis (§6.6) shows a 66.6% peak tension perturbation from a single 20 t climber at the tether base when the tether is at full design cross-section. At 60% completion, the incomplete tether cross-section would experience proportionally higher stress ratios. The SF = 2 margin accommodates this at full build-out (combined stress remains within σ_u), but early-operation climber payloads may need to be reduced or the operational threshold raised to maintain adequate safety margins during the ramp-up phase. The f_threshold sensitivity sweep (§7.5) shows the modular advantage persists across all tested thresholds (0.5–0.9), so this coupling between the economic and structural models does not invalidate the phased-construction finding but represents an unresolved design constraint requiring detailed structural analysis of partial-tether load capacity.
 
 ### 7.3 NPV Crossover
 
-Modular NPV exceeds monolithic at year 1 under baseline assumptions across all tested scenarios. The advantage is:
-- **Robust to launch cost:** Crossover occurs across all tested $500–2000/kg scenarios
+Modular NPV exceeds monolithic at year 5 under baseline assumptions across all tested scenarios. The advantage is:
+- **Robust to launch cost:** Crossover occurs at year 5 across all tested $500–2000/kg scenarios
 - **Insensitive to revenue:** Modular advantage persists regardless of payload pricing
 - **Dominated by phased construction:** Repair cost savings are secondary to revenue timing advantage
 
@@ -704,11 +704,11 @@ Modular NPV exceeds monolithic at year 1 under baseline assumptions across all t
 
 Including depot capital and operating costs in the modular architecture's NPV reduces but does not eliminate the advantage over monolithic construction. At the baseline scenario ($1,000/kg launch, 7% discount, $300/kg payload revenue):
 
-- **No depots:** Modular NPV advantage = $3.14B (unchanged from §7.3)
+- **No depots:** Modular NPV advantage = $0.29B (unchanged from §7.3)
 - **5 depots:** Modular advantage reduced by ~$107M (30-year depot PV)
 - **10 depots:** Modular advantage reduced by ~$214M
 
-The modular architecture supports up to 3 depots before its 30-year NPV falls below the monolithic alternative at baseline revenue ($300/kg). This is a tight budget — 3 depots reduce expected MTTR from 183 h to only 112 h, a meaningful improvement but far from the 72 h target. At higher payload revenue ($500/kg), the budget expands to 5 depots. The break-even is insensitive to launch cost and discount rate because depot costs scale proportionally with tether costs (both are dominated by launch mass).
+The modular architecture supports up to 3 depots before its 30-year NPV falls below the monolithic alternative at baseline revenue ($300/kg). At higher payload revenue ($500/kg), the budget expands to 5 depots. The break-even is insensitive to launch cost and discount rate because depot costs scale proportionally with tether costs (both are dominated by launch mass).
 
 The practical implication is that depot infrastructure is affordable but constrained: a modest network of 3 depots (PV ~$64M at $1,000/kg, 7%) fits within the modular economic advantage across all tested scenarios, while larger networks require either higher payload revenue or acceptance of a reduced — but still positive — NPV margin. Since §6.5.1 shows that the binding constraint on MTTR is inspection cadence rather than depot count, the economic case for deploying more than 3–5 depots is weak: the marginal MTTR reduction from the 4th depot onward is small (~2 h per additional depot), while the marginal cost is constant.
 
@@ -717,9 +717,9 @@ The practical implication is that depot infrastructure is affordable but constra
 
 ### 7.5 Sensitivity to Monolithic Failure Rate and Operational Threshold
 
-To address the asymmetric treatment of the monolithic baseline (§8.5, limitation 5), we sweep the monolithic annual failure probability P_fail_mono ∈ {10⁻⁴, 10⁻³, 10⁻², 10⁻¹} per year. At baseline revenue ($300/kg), the modular NPV advantage persists across all tested P_fail_mono values: delta_NPV ranges from $0.17B at P_fail_mono = 10⁻⁴ (effectively perfect monolithic reliability) to $1.97B at P_fail_mono = 10⁻¹. No crossover threshold exists within the tested range because the phased-construction revenue advantage at N = 83 (build time ~7 years, revenue starting at year ~4) dominates the monolithic failure-cost term. This means the economic case for modular architecture does not depend on the monolithic tether being unreliable — it depends primarily on the ability to generate revenue before 100% completion.
+To address the asymmetric treatment of the monolithic baseline (§8.5, limitation 5), we sweep the monolithic annual failure probability P_fail_mono ∈ {10⁻⁴, 10⁻³, 10⁻², 10⁻¹} per year. At baseline revenue ($300/kg), the modular NPV advantage persists across all tested P_fail_mono values: delta_NPV ranges from $0.16B at P_fail_mono = 10⁻⁴ (effectively perfect monolithic reliability) to $1.97B at P_fail_mono = 10⁻¹. No crossover threshold exists within the tested range because the phased-construction revenue advantage at N = 83 (build time ~7 years, revenue starting at year ~4) dominates the monolithic failure-cost term. This means the economic case for modular architecture does not depend on the monolithic tether being unreliable — it depends primarily on the ability to generate revenue before 100% completion.
 
-Separately, sweeping the operational threshold f_threshold ∈ {0.5, 0.6, 0.7, 0.8, 0.9} shows that the modular advantage narrows monotonically but remains positive across all tested thresholds and revenue scenarios. At baseline revenue, delta_NPV decreases from $0.41B (f = 0.5) to $0.18B (f = 0.9). Even at f_threshold = 0.9, the advantage persists because the monolithic architecture's expected failure costs compound over the operational lifetime. The phased-construction advantage is therefore robust to the operational threshold assumption, though the margin narrows substantially above f = 0.7.
+Separately, sweeping the operational threshold f_threshold ∈ {0.5, 0.6, 0.7, 0.8, 0.9} shows that the modular advantage narrows monotonically but remains positive across all tested thresholds and revenue scenarios. At baseline revenue, delta_NPV decreases from $0.41B (f = 0.5) to $0.17B (f = 0.9). Even at f_threshold = 0.9, the advantage persists because the monolithic architecture's expected failure costs compound over the operational lifetime. The phased-construction advantage is therefore robust to the operational threshold assumption, though the margin narrows substantially above f = 0.7.
 
 ---
 
@@ -754,17 +754,17 @@ This creates an optimal N that balances mass per segment against cascade risk �
 | Paper | What They Did | What We Add |
 |-------|---------------|-------------|
 | Edwards & Westling (2003) | Monolithic taper (implicitly at σ_u) | Explicit dual-envelope analysis; mass penalty quantified |
-| Luo et al. (2022a) | 22% stress reduction with segmentation | Coupled reliability, cascade failure model, lifecycle cost |
+| Luo et al. (2022a) | 56% stress reduction with optimized segmentation | Coupled reliability, cascade failure model, lifecycle cost |
 | Popescu & Sun (2018) | Bio-inspired repair concept | Quantified MTTR, phased construction economics |
 | Aravind (2007) | Canonical taper derivation (pedagogical) | System-level integration with reliability and dynamics |
 
 ### 8.5 Limitations
 
-1. **2D model:** The dynamic model captures in-plane longitudinal and transverse motion but omits out-of-plane dynamics, torsion, and ribbon (finite-width) effects. The transverse gravity-gradient body force is omitted; a post-hoc comparison shows the tension-string stiffness exceeds it by >3,000× outside the GEO vicinity, confirming the omission is justified (see §5.3.2). The 19% discrepancy between the 2D transverse result (30.0 h) and the analytical estimate (25.3 h) is attributable to the non-uniform taper mass distribution, not the missing gravity-gradient stiffness.
+1. **2D model:** The dynamic model captures in-plane longitudinal and transverse motion but omits out-of-plane dynamics, torsion, and ribbon (finite-width) effects. The transverse gravity-gradient body force is omitted; a post-hoc comparison shows the tension-string stiffness exceeds it by >3,000× outside the GEO vicinity, confirming the omission is justified (see §5.3.2). The ~19% discrepancy between the 2D transverse result (30.0 h) and the analytical estimate (25.3 h) is attributable to the non-uniform taper mass distribution, not the missing gravity-gradient stiffness.
 2. **Thermal model:** Three discrete zones rather than continuous thermal profile with orbital mechanics.
 3. **Joint failure:** The Weibull extension (§5.2.2) addresses the exponential model's memoryless assumption by sweeping β ∈ {1.0–2.5}, but the actual wear-out exponent for CNT sleeve bonds is unknown. The extreme sensitivity to activation energy Q (~7 orders of magnitude per ±40% perturbation) means that hazard-rate predictions carry substantial uncertainty until Q is experimentally constrained.
 4. **No experimental validation:** This is a computational parametric design study, not a validated feasibility assessment. Every physical parameter in the reliability model (η_j, Q, m, λ_coupon, τ_s, ζ) is assumed. Experimental next steps are outlined in §9.
-5. **Monolithic failure model:** Simplified annual probability rather than detailed degradation model. The sensitivity analysis in §7.5 quantifies the impact of this asymmetry: the modular NPV advantage persists across all tested P_fail_mono values (10⁻⁴ to 10⁻¹/year), driven by the phased-construction revenue advantage rather than monolithic failure costs.
+5. **Monolithic failure model:** Simplified annual probability rather than detailed degradation model. If the same Arrhenius/Weibull framework were applied to a continuous 100,000 km ribbon with no joints but with microcrack propagation along the full length, the enormous volume (relative to test coupons) and absence of repair points would plausibly yield P_fail_mono near 1.0 at the baseline Q = 1.1 eV — which would strengthen the modular case substantially. However, a monolithic ribbon may have a fundamentally different (and potentially more favorable) failure mechanism than jointed segments: distributed microcracking rather than localized void growth at discrete joints. The comparison therefore assumes the monolithic ribbon benefits from a failure mode not modeled here. The sensitivity analysis in §7.5 quantifies the impact of this asymmetry: the modular NPV advantage persists across all tested P_fail_mono values (10⁻⁴ to 10⁻¹/year), driven by the phased-construction revenue advantage rather than monolithic failure costs.
 6. **Damping uncertainty:** Rayleigh damping with ζ = 0.01 is a conservative baseline (below the ζ ≈ 0.023 reported for dry-spun CNT fibers by Zhang, 2017). Actual tether damping depends on material hysteresis, joint friction, and aerodynamic drag (below ~200 km altitude), and the damping of a full-scale CNT ribbon under space conditions remains uncharacterized. The damping sensitivity study (§6.6) shows that resonant transverse displacement varies by 1.8× across the range ζ = 0.001–0.05, making damping characterization a priority for detailed design.
 7. **Depot cost model:** Depot specifications and costs are parametric estimates (order-of-magnitude). The analysis demonstrates that the trade space exists and that depot infrastructure is affordable relative to tether cost, but does not constitute a detailed depot design.
 
@@ -807,7 +807,7 @@ This reframes the 72 h target from a depot-sizing problem to a sensor/climber te
 
 ### 9.2 Critical Path
 
-The binding constraint is CNT ribbon production at σ_u ≥ 40 GPa on kilometer-per-day lines. Our sensitivity analysis shows the architecture closes (under optimistic tapering) even at σ_u = 30 GPa. Laboratory coupon strengths of 80 GPa (Bai et al., 2018) and continuous kilometer-scale fibers at ~5 GPa specific strength (Niu et al., 2025) bracket the assumed σ_u = 50 GPa baseline, which remains aspirational but within the trajectory of CNT fiber development. Defect-tolerant scaling analysis (Carpinteri & Pugno, 2008) predicts a macroscopic asymptotic strength of ~10 GPa for optimized CNT cables, suggesting a 5× remaining gap from current continuous-fiber performance to the regime where this architecture becomes viable.
+The binding constraint is CNT ribbon production at σ_u ≥ 40 GPa on kilometer-per-day lines. Our sensitivity analysis shows the architecture closes (under optimistic tapering) even at σ_u = 30 GPa. Laboratory coupon strengths of 80 GPa (Bai et al., 2018) and continuous kilometer-scale fibers at 4.1 N·tex⁻¹ tensile strength (≈5.3 GPa at ρ = 1,300 kg/m³; Niu et al., 2025) bracket the assumed σ_u = 50 GPa baseline, which remains aspirational but within the trajectory of CNT fiber development. Defect-tolerant scaling analysis (Carpinteri & Pugno, 2008) predicts a macroscopic asymptotic strength of ~10 GPa for optimized CNT cables, suggesting a 5× remaining gap from current continuous-fiber performance to the regime where this architecture becomes viable.
 
 The repair infrastructure analysis (§8.6) identifies continuous structural health monitoring as a second critical technology: periodic climber-based inspection produces a wait-time floor (93 h at v_climber = 150 m/s) that exceeds the 72 h repair target regardless of depot coverage. Embedded acoustic emission or fiber Bragg grating sensors distributed along the tether would eliminate this floor by enabling immediate failure detection, but require development from TRL 3 (laboratory coupon demonstration) to TRL 6 (system-level validation at representative scale). The key challenges are sensor survivability over 100,000 km, data relay architecture, and integration with the CNT ribbon manufacturing process.
 
@@ -823,9 +823,9 @@ This paper presents a coupled system-level analysis of a modular CNT space-eleva
 
 **C3 — Reliability surface:** Monte Carlo simulation over 12,600 parameter combinations shows P_sys > 99.5% in the well-designed regime conditional on Q ≈ 1.1 eV. A targeted Q-sensitivity sweep at Q = {0.8, 1.1, 1.4} eV reveals that the full-scale hazard rate spans 10 orders of magnitude across this range, with P_sys collapsing to zero at Q = 0.8 eV and saturating at unity at Q = 1.4 eV. Experimental Q characterization is the binding prerequisite for all reliability claims.
 
-**C4 — Minimum viable CNT strength:** Under optimistic tapering, the architecture closes at σ_u = 30 GPa. Laboratory coupon strengths reach 80 GPa (Bai et al., 2018), but continuous kilometer-scale fibers currently achieve ~5 GPa (Niu et al., 2025); the 50 GPa baseline remains aspirational. Under conservative tapering, feasibility requires σ_u ≥ 50 GPa for a manageable segment count (N ≈ 505).
+**C4 — Minimum viable CNT strength:** Under optimistic tapering, the architecture closes at σ_u = 30 GPa. Laboratory coupon strengths reach 80 GPa (Bai et al., 2018), but continuous kilometer-scale fibers currently achieve 4.1 N·tex⁻¹ (≈5.3 GPa; Niu et al., 2025); the 50 GPa baseline remains aspirational. Under conservative tapering, feasibility requires σ_u ≥ 50 GPa for a manageable segment count (N ≈ 505).
 
-**C5 — Economic advantage:** Modular outperforms monolithic across all tested cost scenarios, driven primarily by a phased-construction revenue advantage — modular generates revenue at ~60% completion (year ~5 of 7) while monolithic requires 100%, contingent on a GEO-outward/inward deployment strategy enabling early partial operation. Sensitivity analysis shows this advantage persists across all tested operational thresholds (f ≤ 0.9) and monolithic failure rates (P_fail_mono ≥ 10⁻⁴/year), though the margin narrows from $0.41B to $0.18B as the threshold rises from 0.5 to 0.9.
+**C5 — Economic advantage:** Modular outperforms monolithic across all tested cost scenarios, driven primarily by a phased-construction revenue advantage — modular generates revenue at ~60% completion (year ~4 of 7) while monolithic requires 100%, contingent on a GEO-outward/inward deployment strategy enabling early partial operation. Sensitivity analysis shows this advantage persists across all tested operational thresholds (f ≤ 0.9) and monolithic failure rates (P_fail_mono ≥ 10⁻⁴/year), though the margin narrows from $0.41B to $0.17B as the threshold rises from 0.5 to 0.9.
 
 **C6 — 2D Coriolis-coupled dynamics:** Upgrading from 1D to a 2D rotating-frame FEM reveals that: (i) the lowest-frequency mode is transverse, not longitudinal (T₁_trans = 30.0 h, shifting to 34.8 h with Coriolis — a 16% effect invisible to 1D models); (ii) a single climber induces 136 km peak transverse displacement via Coriolis forcing; (iii) multi-climber resonance at 35 h separation amplifies transverse displacement to 489 km; and (iv) the tether-base tension perturbation of 67% is consistent with the taper design (A_base sized to the climber's surface weight).
 

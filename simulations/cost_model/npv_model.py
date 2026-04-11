@@ -115,8 +115,9 @@ def get_mc_failure_rates(mc_data: dict, params: dict) -> dict:
     N_vals_list = list(N_vals)
     eta_vals_list = list(eta_vals)
 
+    N_baseline = int(params["segments"]["N_baseline"])
     try:
-        n_idx = N_vals_list.index(18)
+        n_idx = N_vals_list.index(N_baseline)
     except ValueError:
         n_idx = len(N_vals_list) // 2
 
@@ -146,7 +147,7 @@ def get_mc_failure_rates(mc_data: dict, params: dict) -> dict:
     # Repair frequency: from the hazard rate model
     # At baseline: lambda_fullscale × n_joints × hours_per_year
     lambda_0 = float(params["joints"]["lambda_0"])
-    n_joints = 17  # N=18 segments → 17 joints
+    n_joints = N_baseline - 1  # N segments → N-1 joints
     hours_per_year = 8760.0
     repairs_per_year = lambda_0 * n_joints * hours_per_year
 

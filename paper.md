@@ -3,9 +3,6 @@
 **Kenneth Egan**
 Department of Mechanical and Aerospace Engineering, Wentworth Institute of Technology, Boston MA, USA
 
-**Mehmet Ergezer**
-Department of Mechanical and Aerospace Engineering, Wentworth Institute of Technology, Boston MA, USA
-
 **Target:** Acta Astronautica (Elsevier)
 **Keywords:** space elevator, carbon nanotubes, modular tether, joint reliability, Monte Carlo simulation, lifecycle cost analysis, orbital infrastructure
 
@@ -944,6 +941,5 @@ Simulation scripts are available in the project repository under `simulations/`.
 ## CRediT Author Statement
 
 - **K. Egan:** Conceptualization, Methodology, Software, Formal Analysis, Writing — Original Draft, Visualization
-- **M. Ergezer:** Supervision, Writing — Review & Editing
 
 ---

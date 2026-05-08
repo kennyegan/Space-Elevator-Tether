@@ -1,0 +1,13 @@
+Weibull Monte Carlo Validation Report
+Trajectories per check: 100000
+==================================================
+[PASS] β=1 matches exponential: ΔP_sys = 0.00000 (tolerance ±0.001)
+[PASS] Baseline P_sys > 0.999: P_sys = 0.99999
+[PASS] P_sys non-increasing in β (within noise): P_sys = ['0.99991', '0.99994', '0.99999', '1.00000', '1.00000']
+[PASS] P_sys non-decreasing in η_j (within noise): P_sys = ['0.99999', '1.00000', '1.00000', '1.00000', '1.00000']
+[PASS] Direct Weibull draw matches analytical CDF: draw_frac=0.007450, expected=0.007372
+[PASS] Analytical β=1.0: MC=0.99256, analytical=0.99263, Δ=0.00007, tol=0.00300
+[PASS] Analytical β=2.0: MC=0.99992, analytical=0.99995, Δ=0.00003, tol=0.00300
+[PASS] Analytical β=2.5: MC=1.00000, analytical=1.00000, Δ=0.00000, tol=0.00300
+==================================================
+Result: 8/8 PASSED
